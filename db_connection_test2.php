@@ -10,7 +10,7 @@ $db_name  = "MeTube_4620_2f01";
 $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
 //Send query // MODIFY THIS QUERY TO ANYTHING YOU LIKE, THIS IS WHAT IS DISPLAYED ON THE WEBPAGE WHEN NAVIGATED TO
-$query = 'SELECT * from pet';
+$query = 'SELECT * from users';
 
 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
 
