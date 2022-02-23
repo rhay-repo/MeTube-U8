@@ -9,11 +9,11 @@ body {
 
 .loginbox {
     width: 320px;
-    height: 420px;
+    height: 470px;
     background: #000;
     color: #fff; 
-    top: 50%;
-    left: 50%;
+    top: 50%; /* centers box vertically */
+    left: 50%; /* centers box horizontally */
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
@@ -87,5 +87,4 @@ h1 {
 .loginbox a:hover
 {
     color: ffc107;
-}
 }
