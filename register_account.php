@@ -6,17 +6,19 @@ $username = "MeTube_4620_q9av";
 $pswd     = "CP\$C4620!";
 $db_name  = "MeTube_4620_2f01";
 
-//Connecting, selecting database
+// Connecting, selecting database
 $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
-//Send query 
-// $insert_query = "INSERT into users VALUES ('something', 'something', 'something')";
+// Send query 
+$email = $_POST['email']; // gathered from register.html 'email'
+$username = $_POST['username']; // gathered from register.html 'username'
+$password = $_POST['password']; // gathered from register.html 'password'
 
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+$valid_email_regex = '([0-z]){1,20}@([0-z]){1,20}\.(com|edu|us|net|web)';
 
-// $insert_query = "INSERT into users VALUES ({$email}, {$username}, {$password})";
+// construct db query
+// $insert_query = "IF (0<=2) PRINT \'email address is valid\';";
+// $insert_query = "IF ({$email} RLIKE {$valid_email_regex}) { echo 'email is valid!' };";
 $insert_query = "INSERT into users VALUES ('{$email}', '{$username}', '{$password}')";
 
 $result = mysqli_query($link, $insert_query) or die("Query error: ". mysqli_error($link)."\n");
