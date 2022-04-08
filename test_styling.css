@@ -1,10 +1,10 @@
 body {
     margin: 0; 
     padding: 0;
-    background: url(galaxy-background.jpg); 
+    /* background: url(galaxy-background.jpg); 
     background-size: cover;
-    background-position: center;
-    /* background: rgb(187, 215, 255); */
+    background-position: center; */
+    background: rgb(187, 215, 255);
     font-family: sans-seriff;
 }
 

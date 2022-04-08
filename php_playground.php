@@ -9,6 +9,8 @@ $db_name  = "MeTube_4620_2f01";
 //Connecting, selecting database
 $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
+// BEGIN PLAYGROUND AREA -- DO NOT EDIT ABOVE THIS LINE
+
 //Send query // MODIFY THIS QUERY TO ANYTHING YOU LIKE, THIS IS WHAT IS DISPLAYED ON THE WEBPAGE WHEN NAVIGATED TO
 $query = 'SELECT * from users';
 
@@ -36,8 +38,9 @@ echo "</table>\n";
 
 mysqli_free_result($result);
 
+
+// END OF PLAYGROUND AREA -- DO NOT EDIT BELOW THIS LINE
+
 // Closing connection
-
 mysqli_close($link);
-
 ?>
