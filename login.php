@@ -1,17 +1,9 @@
 <?php
+    // include standard variables
+    require 'headers.php';
 
-session_start();
-    //~ require_once 'db/connect.php';
-// Variables
-$error = '';
-$hostname = "mysql1.cs.clemson.edu";
-$username = "MeTube_4620_q9av";
-$pswd     = "CP\$C4620!";
-$db_name  = "MeTube_4620_2f01";
-
-// Connecting, selecting database
-$link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
-
+    // Connecting, selecting database
+    $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +27,7 @@ $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not co
 
             <input type="submit" name="loginbutton" value="Login">
             <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/too-bad.html?#">Forgot your password?</a><br>
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/register.html?#">Don't have an account? Register here</a>
+            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/register.php?#">Don't have an account? Register here</a>
         </form>
 
 
