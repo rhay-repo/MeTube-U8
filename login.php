@@ -27,8 +27,8 @@
             <input type="password" name="password" placeholder="Password">
 
             <input type="submit" name="loginbutton" value="Login">
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/too-bad.html?#">Forgot your password?</a><br>
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/register.php?#">Don't have an account? Register here</a>
+            <a href="too-bad.html">Forgot your password?</a><br>
+            <a href="register.php">Don't have an account? Register here</a>
         </form>
 
 
