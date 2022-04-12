@@ -42,7 +42,7 @@
 
             <br>
             
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/login.php?#">Already have an account? Log in here</a>
+            <a href="login.php">Already have an account? Log in here</a>
         </form>
 
 
