@@ -35,7 +35,7 @@ $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not co
 
             <input type="submit" name="loginbutton" value="Login">
             <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/too-bad.html?#">Forgot your password?</a><br>
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/register.html?#">Don't have an account? Register here</a>
+            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/register.php?#">Don't have an account? Register here</a>
         </form>
 
 
