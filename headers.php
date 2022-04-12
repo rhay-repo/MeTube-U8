@@ -10,5 +10,5 @@
     $db_name  = "MeTube_4620_2f01";
 
     // // Connecting, selecting database
-    // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+    $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 ?>
