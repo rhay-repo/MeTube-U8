@@ -42,7 +42,7 @@ $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not co
 
             <br>
             
-            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/login2.php?#">Already have an account? Log in here</a>
+            <a href="http://webapp.computing.clemson.edu/~rjhay/MeTube/login.php?#">Already have an account? Log in here</a>
         </form>
 
 

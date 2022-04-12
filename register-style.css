@@ -1,9 +1,10 @@
 body {
     margin: 0; 
     padding: 0;
-    background: url(galaxy-background.jpg); 
+    background: url(images/galaxy-background.jpg); 
     background-size: cover;
     background-position: center;
+    align-content: flex-end;
     /* background: rgb(187, 215, 255); */
     font-family: sans-seriff;
 }
@@ -19,6 +20,7 @@ body {
     transform: translate(-50%,-50%);
     box-sizing: border-box;
     padding: 70px 30px;
+    /* backdrop-filter: drop-shadow(8px 8px 10px green); */
 }
 
 .avatar {
