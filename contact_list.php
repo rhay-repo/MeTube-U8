@@ -29,6 +29,7 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Connection</th>
+                    <th>Category</th>
                 </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($result)) {
@@ -45,6 +46,9 @@
                     </td>
                     <td>
                         <button class="btn"> Friend </button>
+                    </td>
+                    <td>
+                        <a> <?php echo "tag"; ?> </a>
                     </td>
                 </tr>
                 <?php
