@@ -1,7 +1,7 @@
 <?php
     require 'headers.php';
 
-    session_start();
+     session_start();
 // require 'navbar.html';
 //     //~ require_once 'db/connect.php';
 // // Variables
@@ -116,7 +116,7 @@
 
                 // redirect them to the home page
                 //~THIS ISN'T WORKING
-                header('Location: http://webapp.computing.clemson.edu/~rjhay/MeTube/homepage.html');
+                header('Location: user_homepage.php');
 
             }
 
