@@ -6,9 +6,10 @@
 <body>
 
     <?php 
-        $_SESSION["loggedin"] = true; 
+        $_SESSION["loggedin"] = false;
         require 'headers.php';
-        echo "Welcome" . $_SESSION['username']
+        $_SESSION["loggedin"] = false;
+        echo "Please sign in or create an account";
     ?>
    
 </body>

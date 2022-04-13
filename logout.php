@@ -90,7 +90,7 @@ if(!$loggedin){
   <body>
   
   <div class="navbar">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a class="active" href="guest_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
     
       <div class="dropdown">
         <button class="dropbtn"> 
@@ -191,7 +191,7 @@ if(!$loggedin){
   <body>
   
   <div class="navbar">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a class="active" href="user_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
     
       <div class="dropdown">
         <button class="dropbtn"> 

@@ -57,6 +57,7 @@
             $email = $_POST['email']; // gathered from name 'email'
             $username = $_POST['username']; // gathered from name 'username'
             $password = $_POST['password']; // gathered from name 'password'
+           // $_SESSION['loggedin'] = false;
 
             // check that email and username are not already in the database
             $check_email_query = "SELECT * from users WHERE email='{$email}'";
