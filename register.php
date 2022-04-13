@@ -1,7 +1,7 @@
 <?php
     require 'headers.php';
 
-// session_start();
+    session_start();
 // require 'navbar.html';
 //     //~ require_once 'db/connect.php';
 // // Variables
@@ -104,7 +104,9 @@
 
             // otherwise, accept the result and add the new user's data to the database
             else {
-
+                // CREATE USER ID NUMBER
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $username;
                 // construct db query
                 // $insert_query = "IF (0<=2) PRINT \'email address is valid\';";
                 // $insert_query = "IF ({$email} RLIKE {$valid_email_regex}) { echo 'email is valid!' };";
