@@ -2,12 +2,8 @@
     // login vars
     require 'headers.php';
 
-    $temp_username = "rjhay";
-    $temp_email = "reaganjhay@gmail.com";
-    $temp_password = "CPSC4620";
-
-    // 
-    $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+    // ~ 
+    // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
     $query = "SELECT username, email FROM users WHERE username='rjhay' AND email='reaganjhay@gmail.com' AND password='CPSC4620'";
     $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
@@ -19,11 +15,14 @@
         $data_array[] = $line;
     }
     // store into vars
-    $username = $data_array[0]['username'];
-    $email = $data_array[0]['email'];
+    // $username = $data_array[0]['username'];
+    // $email = $data_array[0]['email'];
 
-    // echo $username;
-    // echo $email;
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+
+    echo "username: " . $username;
+    echo "email: " . $email;
 	
 ?>
 
@@ -31,7 +30,7 @@
 <html>
 <head>
     <body>
-        <form method="POST">
+        <form method="POST" action="update_username.php">
             <?php echo "<p>username: $username</p>"; ?>
             <input type="text" name="username" placeholder="New Username">
             <button>Save</button>
@@ -48,7 +47,7 @@
         </form>
 
         <?php
-            $username = $_POST['username'];
+            $new_username = $_POST['username'];
 
         ?>
 
