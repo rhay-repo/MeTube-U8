@@ -198,10 +198,10 @@
                 <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="view_profile.php">Profile</a>
-                <a href="contact_list.php">Contact</a>
-                <a href="edit_profile.php">Settings</a>
-                <a href="logout.php">Logout</a>
+                <a href="view_profile.php" target="blank"><i class="fa fa-user"></i> Profile</a>
+                <a href="contact_list.php" target="blank"><i class="fa fa-address-book"></i> Contacts</a>
+                <a href="edit_profile.php" target="blank"><i class="fa fa-cog"></i> Settings</a>
+	            <a href="logout.php" target="blank"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>
             </div> 
         </div>
