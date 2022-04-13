@@ -8,7 +8,7 @@
     <?php 
         $_SESSION["loggedin"] = true; 
         require 'headers.php';
-        echo "Welcome" . $_SESSION['username']
+        echo '<div style="font-size:1.25em;color:white"> Welcome '. $_SESSION['username'] ;
     ?>
    
 </body>
