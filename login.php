@@ -62,6 +62,7 @@
                 $err_counter++;
             }
 
+            //~
             echo "number of users with the credentials: $username/$password = " . $matching_password_result->num_rows . "<br>";
 
 
@@ -72,7 +73,7 @@
             }
 
             //~
-            if (1 == 1) {
+            if ($err_counter > 0) {
                 echo $error;
                 echo "<h3>\$err_counter = " . $err_counter . "</h3>";
             }

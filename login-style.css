@@ -2,6 +2,8 @@ body {
     margin: 0; 
     padding: 0;
     background: url(images/galaxy-background.jpg);
+    /* ~ */
+    /* background: red; */
     background-size: cover;
     background-position: center;
     
