@@ -6,38 +6,209 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
 else{
   $loggedin = false;
 }
-echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/loginsystem">iSecure</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/loginsystem/welcome.php">Home <span class="sr-only">(current)</span></a>
-      </li>';
-
-      if(!$loggedin){
-      echo '<li class="nav-item">
-        <a class="nav-link" href="/loginsystem/login.php">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/loginsystem/signup.php">Signup</a>
-      </li>';
-      }
-      if($loggedin){
-      echo '<li class="nav-item">
-        <a class="nav-link" href="/loginsystem/logout.php">Logout</a>
-      </li>';
+if(!$loggedin){
+  echo '<!DOCTYPE html>
+  <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  
+  .navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+  
+  .navbar a {
+    float: right;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: auto;
+    
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #8c72e0;
+  }
+  
+  .active {
+    background-color: #3a10c4;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
     }
-       
-      
-    echo '</ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  </style>
+  <body>
+  
+  <div class="navbar">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    
+      <div class="dropdown">
+        <button class="dropbtn"> 
+          <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="register.php">Register</a>
+          <a href="login.php">Login</a>
+        </div>
+    </div> 
   </div>
-</nav>';
+  
+  
+  </body>
+  </html>';
+  }
+
+  if($loggedin){
+  echo '<!DOCTYPE html>
+  <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  
+  .navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+  
+  .navbar a {
+    float: right;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .dropdown {
+    float: left;
+    overflow: auto;
+    
+  }
+  
+  .dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #8c72e0;
+  }
+  
+  .active {
+    background-color: #3a10c4;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .navbar a {
+      float: none;
+      display: block;
+    }
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  </style>
+  <body>
+  
+  <div class="navbar">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    
+      <div class="dropdown">
+        <button class="dropbtn"> 
+          <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="view_profile.php">Profile</a>
+          <a href="contact_list.php">Contact</a>
+          <a href="edit_profile.php">Settings</a>
+          <a href="logout.php">Logout</a>
+        </div>
+    </div> 
+  </div>
+  
+  
+  </body>
+  </html>';
+}
+       
 ?>
