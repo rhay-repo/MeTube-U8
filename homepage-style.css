@@ -1,0 +1,50 @@
+body {
+    margin: 0; 
+    padding: 0;
+    background: url(images/galaxy-background.jpg);
+    background-size: cover;
+    background-position: center;
+    
+    font-family: sans-seriff;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contacts {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+}
+  
+#contacts td, #contacts th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: grey;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: black;
+    color: white;
+}
+
+h1 { 
+    text-align: center; 
+    color: white;
+} 
+
+#contacts tr:hover {background-color: blueviolet;}
+
+#contacts th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: black;
+    color: white;
+}

@@ -13,7 +13,7 @@
         <title> Contact List </title>
         <link rel="stylesheet" type="text/css" href="homepage-style.css">
         <body>
-            <h2> Contact List </h2>
+            <h1> Contact List </h1>
 
             <?php
                 // query the database or produce error message 
@@ -23,7 +23,11 @@
 
             ?>
 
-            <table class="table" width="50%" cellpadding="0" cellspacing="0">
+            <table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($result)) {
                         $username = $result_r[0];
