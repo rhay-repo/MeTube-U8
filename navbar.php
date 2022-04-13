@@ -97,8 +97,8 @@
                 <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="register.php">Register</a>
-                <a href="login.php">Login</a>
+                <a href="register.php" target="blank"><i class="fa fa-user-plus"></i> Create Account</a>
+                <a href="login.php" target="blank"><i class="fa fa-sign-in"></i> Login</a>
                 </div>
             </div> 
         </div>
