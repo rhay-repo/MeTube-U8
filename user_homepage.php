@@ -5,7 +5,10 @@
     <link rel="stylesheet" type="text/css" href="register-style.css">
 <body>
 
-    <?php echo "Welcome" . $_SESSION['username']?>
+    <?php 
+        require 'headers.php';
+        echo "Welcome" . $_SESSION['username']
+    ?>
    
 </body>
 </head>
