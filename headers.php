@@ -1,6 +1,7 @@
 <?php
     session_start();
-    require 'navbar.html';
+    require 'logout.php';
+    require 'functions.php';
 
     // Variables
     $error = '';
