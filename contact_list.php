@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> Contact List </title>
         <link rel="stylesheet" type="text/css" href="homepage-style.css">
         <body>
@@ -27,6 +28,7 @@
                 <tr>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Connection</th>
                 </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($result)) {
@@ -41,11 +43,15 @@
                     <td>
                         <a> <?php echo $email;?> </a>
                     </td>
+                    <td>
+                        <button class="btn"> Friend </button>
+                    </td>
                 </tr>
                 <?php
                     }
                 ?>
             </table>
+
         </body>
     </head>
 </html>
