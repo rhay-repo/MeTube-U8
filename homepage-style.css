@@ -30,7 +30,7 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-    background-color: black;
+    background-color: rgb(51, 50, 50);
     color: white;
 }
 
