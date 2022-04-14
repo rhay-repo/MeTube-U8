@@ -26,7 +26,6 @@
         <h1>MeTube Account Creation</h1>
 
         <!-- begin form -->
-        <!--~ <form action="register_account.php" method="post"> -->
         <form id="register" method="post">
 
             <p>Email Address</p>
