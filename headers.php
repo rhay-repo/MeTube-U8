@@ -4,11 +4,11 @@
     require 'functions.php';
 
     // Variables
-    $error = '';
-    $hostname = "mysql1.cs.clemson.edu";
+    $error       = '';
+    $hostname    = "mysql1.cs.clemson.edu";
     $db_username = "MeTube_4620_q9av";
-    $pswd     = "CP\$C4620!";
-    $db_name  = "MeTube_4620_2f01";
+    $pswd        = "CP\$C4620!";
+    $db_name     = "MeTube_4620_2f01";
     $loggedin;
 
     // // Connecting, selecting database

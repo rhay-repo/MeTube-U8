@@ -81,9 +81,19 @@
             // otherwise, accept the login and add take the user to the home page
             else {
 
-                //~THIS ISN'T WORKING
-                header('Location: http://webapp.computing.clemson.edu/~rjhay/MeTube/homepage.html');
+                // save session variable values
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $username;
+                // set session email (HAVE TO RETREIVE FROM DATABASE)
+                $query = "SELECT email from users where username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+                $result_row = mysqli_fetch_row($result);
+                $email = $result_row[0];
+                $_SESSION['email'] = $email;
 
+                //~THIS ISN'T WORKING
+                // header('Location: http://webapp.computing.clemson.edu/~rjhay/MeTube/homepage.html');
+                header('Location: user_homepage.php');
             }
 
         }

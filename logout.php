@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Account Registration Page Design</title>
+<title>Logout Page</title>
     <link rel="stylesheet" type="text/css" href="register-style.css">
 <body>
 
