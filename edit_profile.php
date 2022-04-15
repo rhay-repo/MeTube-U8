@@ -62,6 +62,7 @@
             //~FOR SOME REASON, $SESSION['new_username'] IS ALWAYS BLANK
             // if (isset($_POST['update_username'])) {
                 $_SESSION['new_username'] = $_POST['new_username'];
+                echo $_POST['new_username'];
             // }
             // TODO: 
             // set session new_email
