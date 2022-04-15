@@ -1,7 +1,7 @@
 <?php
     require 'headers.php';
 
-    session_start();
+    //session_start();
 // require 'navbar.html';
 //     //~ require_once 'db/connect.php';
 // // Variables
@@ -30,7 +30,7 @@
         <form id="register" method="post">
 
             <p>Email Address</p>
-            <input pattern="^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,5})$" type="text" name="email" placeholder="Email Addresss">
+            <input pattern="^([a-zA-Z0-9]+)@([a-zA-Z0-9]+)\.([a-zA-Z]{2,5})$" type="text" name="email" placeholder="Email Address">
             
             <p>Username</p>
             <input type="text" name="username" placeholder="Username">
