@@ -40,11 +40,16 @@
         <form method="POST" action="update_username.php">
             <?php echo "<p>Username: $username</p>"; ?>
             <input type="text" name="new_username" placeholder="New Username">
-            <input type="submit" name="update_username" value="Save Changes">
+            <input type="submit" name="update_ubutton" value="Save Changes">
             <!-- <button>Save Changes</button> -->
         </form>
 
-        <form method="POST">
+        <?php
+            echo $username;
+            echo $_POST['new_username'];
+            echo $_POST['update_ubutton'];
+        ?>
+        <!-- <form method="POST">
             <?php echo "<p>Email Address: $email</p>"; ?>
             <input type="text" name="new_email" placeholder="New Email">
             <button>Save Changes</button>
@@ -54,20 +59,35 @@
             <?php echo "<p>Password</p>"; ?>
             <input type="password" name="new_password" placeholder="New Password">
             <button>Save Changes</button>
-        </form>
+        </form> -->
 
         <?php
             // set session new_username
             //~THIS IS NOT WORKING
             //~FOR SOME REASON, $SESSION['new_username'] IS ALWAYS BLANK
             // if (isset($_POST['update_username'])) {
-                $_SESSION['new_username'] = $_POST['new_username'];
-                echo $_POST['new_username'];
+                // $_SESSION['new_username'] = $_POST['new_username'];
+                // $_SESSION['updated'] = $_POST['update_username'];
+                // echo $_POST['updated'];
             // }
             // TODO: 
             // set session new_email
             // TODO:
             // set session new_password
+
+            // require 'headers.php';
+            //~v
+            if(isset($_POST['update_ubutton'])) {}
+            $username = $_SESSION['username'];
+            $email = $_SESSION['email'];
+            $new_username = $_SESSION['new_username'];
+            //~^
+        
+            $query = "UPDATE users SET username='{$_SESSION['new_username']}' WHERE username='{$_SESSION['username']}'";
+            $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+            $_SESSION['username'] = $_SESSION['new_username'];
+            header('Location: edit_profile.php');
+
         ?>
 
 
