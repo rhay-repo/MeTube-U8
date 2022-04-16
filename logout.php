@@ -12,6 +12,8 @@
       session_destroy();
       
       require 'headers.php';
+      echo '<div style="font-size:2em;color:white;text-align:center;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);border: 5px solid #FFFFFF;padding: 10px;"> Come back soon!';
+   
       exit;
     ?>
    

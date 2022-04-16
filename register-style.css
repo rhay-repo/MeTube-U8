@@ -39,6 +39,12 @@ h1 {
     font-size: 22px;
 }
 
+h2 {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    background-color: #8c72e0; 
+}
+
 h3 {
     color: rgb(221, 255, 0);
     font-size: 22px;
