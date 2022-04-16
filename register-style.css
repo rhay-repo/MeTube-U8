@@ -51,6 +51,12 @@ h3 {
     background-color: red;
 }
 
+h5 {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    background-color: #8c72e0; 
+}
+
 .loginbox p{
     margin: 0; 
     padding: 0;

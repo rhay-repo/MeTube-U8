@@ -8,7 +8,7 @@
     <?php 
         $_SESSION["loggedin"] = true; 
         require 'headers.php';
-        echo '<div style="font-size:2em;color:white;text-align:center;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);border: 5px solid #FFFFFF;padding: 10px;"> Welcome, '. $_SESSION['username'] ;
+        echo '<div style="font-size:2em;color:white;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);border: 5px solid #FFFFFF;padding: 10px;"> Welcome, '. $_SESSION['username'] ;
     ?>
     
     <!-- <div class="box"> -->
