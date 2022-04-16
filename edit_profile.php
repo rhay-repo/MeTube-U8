@@ -37,18 +37,13 @@
 <html>
 <head>
     <body>
-        <form method="POST" action="update_username.php">
-            <?php echo "<p>Username: $username</p>"; ?>
+        <form method="POST">
+            <?php echo "<p>Username: " . $_SESSION['username'] . "</p>"; ?>
             <input type="text" name="new_username" placeholder="New Username">
             <input type="submit" name="update_ubutton" value="Save Changes">
             <!-- <button>Save Changes</button> -->
         </form>
 
-        <?php
-            echo $username;
-            echo $_POST['new_username'];
-            echo $_POST['update_ubutton'];
-        ?>
         <!-- <form method="POST">
             <?php echo "<p>Email Address: $email</p>"; ?>
             <input type="text" name="new_email" placeholder="New Email">
@@ -77,16 +72,35 @@
 
             // require 'headers.php';
             //~v
-            if(isset($_POST['update_ubutton'])) {}
-            $username = $_SESSION['username'];
-            $email = $_SESSION['email'];
-            $new_username = $_SESSION['new_username'];
-            //~^
-        
-            $query = "UPDATE users SET username='{$_SESSION['new_username']}' WHERE username='{$_SESSION['username']}'";
-            $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
-            $_SESSION['username'] = $_SESSION['new_username'];
-            header('Location: edit_profile.php');
+
+            // if(isset($_POST['update_ubutton'])) {
+            //     $username = $_SESSION['username'];
+            //     $email = $_SESSION['email'];
+            //     $new_username = $_SESSION['new_username'];
+            //     //~^
+            
+                // $query = "UPDATE users SET username='{$_SESSION['new_username']}' WHERE username='{$_SESSION['username']}'";
+                // $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+            //     $_SESSION['username'] = $_SESSION['new_username'];
+            //     header('Location: edit_profile.php');
+            // }
+
+            if(isset($_POST['update_ubutton'])) {
+                
+                echo $username . "<br>";
+                echo $_POST['new_username'] . "<br>";
+                echo $_POST['update_ubutton'];
+
+                $new_username = $_POST['new_username'];
+
+                $query = "UPDATE users SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+                $_SESSION['username'] = $new_username;
+
+                
+
+            }
 
         ?>
 
