@@ -10,6 +10,8 @@
     $pswd        = "CP\$C4620!";
     $db_name     = "MeTube_4620_2f01";
     $loggedin;
+    $media_search;
+    $media_category;
 
     // // Connecting, selecting database
     $_SESSION['link'] = mysqli_connect($hostname,$db_username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));

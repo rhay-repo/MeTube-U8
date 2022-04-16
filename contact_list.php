@@ -8,6 +8,8 @@
     //$link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
     function add_friend(&$uid, &$uidf) {
+        // echo $uid ."\n";
+        // echo $uidf ."\n";
         $query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
     }
@@ -38,13 +40,13 @@
                 </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($result)) {
-                        $username = $result_r[0];
+                        $user = $result_r[0];
                         $email = $result_r[1];
                     
                 ?>
                 <tr valign="top">
                     <td>
-                        <a href="#"> <?php echo $username;?> </a>
+                        <a> <?php echo $user;?> </a>
                     </td>
                     <td>
                         <a> <?php echo $email;?> </a>
@@ -53,14 +55,11 @@
                         <button class="btn"> Remove Friend </button>
                     </td>
                     <td>
-                    <?php
-                            if(array_key_exists('add', $_POST)) {
-                                add_friend($loggedin, $username);
-                            }
-                    ?>
+                   
                     <form method="post">
-                            <input type="submit" name="add"
-                             class="button" value="ADD" />
+                            <!-- <input type="submit" name="add"
+                             class="button" value="ADD" /> -->
+                            <button type="submit" name="add" value=<?php $user ?>> Add </button>
                     </form>
                     </label>
 
@@ -69,6 +68,15 @@
                 <?php
                     }
                 ?>
+
+                <?php
+                            if(array_key_exists('add', $_POST)) {
+                                $mainuser = $_SESSION['username'];
+                                echo "help!". $mainuser ."\n";
+                                echo $user;
+                                add_friend($_SESSION['username'], $user);
+                            }
+                    ?>
             </table>
 
         </body>
