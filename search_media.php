@@ -39,7 +39,7 @@
 		// changes characters used in html to their equivalents, for example: < to &gt;
 		
 
-        $data_query = "SELECT * from media LIKE '%$query%'";
+        $data_query = "SELECT * from media LIKE '%{$query}%'";
         $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 
 
@@ -63,7 +63,11 @@
         <th>Date Published</th>
     </tr>
     <?php
-        while($result_r = mysqli_fetch_row($result)) {
+
+        $data_list = "SELECT title, keywords, date_published from media";
+        $result_list = mysqli_query($link, $data_list) or die("Query error test: ". mysqli_error($link)."\n");;
+
+        while($result_r = mysqli_fetch_row($result_list)) {
             $title = $result_r[0];
             $keywords = $result_r[1];
             $date_published = $result_r[2];
