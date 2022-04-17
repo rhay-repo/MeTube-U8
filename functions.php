@@ -39,8 +39,8 @@
     // }
 
     // remove friend
-    function remove_friend(&$uid, &$uidf) {
-        $query = "DELETE FROM contact_list WHERE username = $uid AND contact = $uidf";
-        $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
-    }
+    // function remove_friend(&$uid, &$uidf) {
+    //     $query = "DELETE FROM contact_list WHERE username = $uid AND contact = $uidf";
+    //     $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+    // }
 ?>
