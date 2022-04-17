@@ -1,110 +1,96 @@
+<?php
+    require 'headers.php';
+    include 'db_connection_test.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-}
-
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
-
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  background-color: #8c72e0;
-}
-</style>
+        <title> Media Search </title>
+        <link rel="stylesheet" type="text/css" href="homepage-style.css">
 </head>
-<body>
 
 <h2>Media Search</h2>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search media..." title="Type in a keyword">
+<body>
+	<form action="search_media.php" method="GET">
+		<input type="text" name="query" />
+		<input type="submit" value="Search" />
+	</form>
+</body>
 
-<table id="myTable">
-  <tr class="header">
-    <th style="width:33%;">Media Title</th>
-    <th style="width:33%;">Keywords</th>
-    <th style="width:33%;">Date Published</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Berglunds snabbkop</td>
-    <td>Sweden</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Koniglich Essen</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Italy</td>
-  </tr>
-  <tr>
-    <td>North/South</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Paris specialites</td>
-    <td>France</td>
-  </tr>
+<head>
+	<title>Search results</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<?php
+	$query = $_GET['query']; 
+	// gets value sent over search form
+	
+	$min_length = 1;
+	// you can set minimum length of the query if you want
+	
+	if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
+		
+		$query = htmlspecialchars($query); 
+		// changes characters used in html to their equivalents, for example: < to &gt;
+		
+
+        $data_query = "SELECT * from media LIKE '%$query%'";
+        $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+		while($result_r = mysqli_fetch_row($result)) {
+            $title = $result_r[0];
+            $keywords = $result_r[1];
+            $date_published = $result_r[2];
+        }
+		
+	}
+	else{ // if query length is less than minimum
+		echo "Minimum length is ".$min_length;
+	}
+?>
+
+
+<table class="table center" id="contacts" width="33%" cellpadding="1" cellspacing="1">
+    <tr>
+        <th>Title</th>
+        <th>Keywords</th>
+        <th>Date Published</th>
+    </tr>
+    <?php
+        while($result_r = mysqli_fetch_row($result)) {
+            $title = $result_r[0];
+            $keywords = $result_r[1];
+            $date_published = $result_r[2];
+        
+    ?>
+    <tr valign="top">
+        <td>
+            <a> <?php echo $title;?> </a>
+        </td>
+        <td>
+            <a> <?php echo $keywords;?> </a>
+        </td>
+        <td>
+            <a> <?php echo $date_published;?> </a>
+        </td>
+        <td>
+        
+        <form method="post">
+                <button type="submit" name="add" value=<?php $title ?>> Favorite </button>
+        </form>
+        </label>
+
+        </td>
+    </tr>
+    <?php
+        }
+    ?>
 </table>
-
-<script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script>
-
 </body>
 </html>
