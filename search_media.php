@@ -29,19 +29,19 @@
 </head>
 <body>
 <?php
-	$query = $_GET['query']; 
+	$search_query = $_GET['query']; 
 	// gets value sent over search form
 	
 	$min_length = 1;
 	// you can set minimum length of the query if you want
 	
-	if(strlen($query) >= $min_length){ // if query length is more or equal minimum length then
+	if(strlen($search_query) >= $min_length){ // if query length is more or equal minimum length then
 		
-		$query = htmlspecialchars($query); 
+		$query = htmlspecialchars($search_query); 
 		// changes characters used in html to their equivalents, for example: < to &gt;
 		
 
-        $data_query = "SELECT * from media WHERE title LIKE '%{$query}%'";
+        $data_query = "SELECT * from media WHERE title LIKE '%{$search_query}%'";
         $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 
 
