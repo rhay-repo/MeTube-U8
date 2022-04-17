@@ -4,95 +4,71 @@
 
 ?>
 
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    
-<title>Account Registration Page Design</title>
-    <!-- <link rel="stylesheet" type="text/css" href="register-style.css"> -->
-   <!-- <body>
-<form id="register" method="post">
-
-    <p>Media Type</p>
-    <input type="text" name="media_type" placeholder="Media Type">
-    
-    <p>Keywords</p>
-    <input type="text" name="keywords" placeholder="Key Words (separated by commas)">
-    
-    <p>Category</p>
-    <input type="text" name="category" placeholder="Category">
-    
-    <input type="submit" name="uploadmediabutton" value="Upload Media!">
-
-    <br>
-</form>
-</body>
-</head>
-</html> -->
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script>
-var subjectObject = {
-  "Front-end": {
-    "HTML": ["Links", "Images", "Tables", "Lists"],
-    "CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-    "JavaScript": ["Variables", "Operators", "Functions", "Conditions"]    
-  },
-  "Back-end": {
-    "PHP": ["Variables", "Strings", "Arrays"],
-    "SQL": ["SELECT", "UPDATE", "DELETE"]
-  }
-}
-window.onload = function() {
-  var subjectSel = document.getElementById("subject");
-  var topicSel = document.getElementById("topic");
-  var chapterSel = document.getElementById("chapter");
-  for (var x in subjectObject) {
-    subjectSel.options[subjectSel.options.length] = new Option(x, x);
-  }
-  subjectSel.onchange = function() {
-  //empty Chapters- and Topics- dropdowns
-  chapterSel.length = 1;
-  topicSel.length = 1;
-    //display correct values
-    for (var y in subjectObject[this.value]) {
-      topicSel.options[topicSel.options.length] = new Option(y, y);
-    }
-  }
-  topicSel.onchange = function() {
-    //empty Chapters dropdown
-    chapterSel.length = 1;
-    //display correct values
-    var z = subjectObject[subjectSel.value][this.value];
-    for (var i = 0; i < z.length; i++) {
-      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
-    }
-  }
-}
-</script>
-</head>   
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Upload Media </title>
+    <!-- <link rel="stylesheet" type="text/css" href="homepage-style.css"> -->
+    <body>
+        <h1> Upload Media </h1>
+        <div>
+            <form action="/action_page.php">
+                <input type="file" id="myFile" name="filename">
+                <input type="submit"> <br>
 
-<h1>Cascading Dropdown Example</h1>
+                <br>
 
-<form name="form1" id="form1" action="/action_page.php">
-Subjects: <select name="subject" id="subject">
-    <option value="" selected="selected">Select subject</option>
-  </select>
-  <br><br>
-Topics: <select name="topic" id="topic">
-    <option value="" selected="selected">Please select subject first</option>
-  </select>
-  <br><br>
-Chapters: <select name="chapter" id="chapter">
-    <option value="" selected="selected">Please select topic first</option>
-  </select>
-  <br><br>
-  <input type="submit" value="Submit">  
-</form>
+                <label for="fname">Title:</label><br>
+                <input type="text" id="fname" name="fname"><br>
 
-</body>
+                <br>
+
+                <label for="file_type">File Type:</label><br>
+                <input type="radio" id="jpg" name="file_type" value="JPG">
+                <label for="jpg">JPG</label><br>
+                <input type="radio" id="png" name="file_type" value="PNG">
+                <label for="png">PNG</label><br>
+                <input type="radio" id="jpeg" name="file_type" value="JPEG">
+                <label for="jpeg">JPEG</label><br>
+                <input type="radio" id="gif" name="file_type" value="GIF">
+                <label for="gif">GIF</label><br>
+
+                <br>
+
+                <label for="category">Category:</label><br>
+                <input type="checkbox" id="sports" name="sports" value="Sports">
+                <label for="sports"> SPORTS </label><br>
+                <input type="checkbox" id="entertainment" name="entertainment" value="Entertainment">
+                <label for="entertainment"> ENTERTAINMENT </label><br>
+                <input type="checkbox" id="food" name="food" value="Food">
+                <label for="food"> FOOD </label><br>
+                <input type="checkbox" id="home" name="home" value="Home">
+                <label for="home"> HOME </label><br>
+
+                <br>
+
+                <label for="view_group">View Group:</label><br>
+                <input type="radio" id="public" name="view_group" value="Public">
+                <label for="Public">Public</label><br>
+                <input type="radio" id="private" name="view_group" value="Private">
+                <label for="Private">Private</label><br>
+                <input type="radio" id="friends" name="view_group" value="Friends">
+                <label for="Friends">Friends</label><br>
+                
+                <br>
+
+                <label for="description">Description:</label><br>
+                <input type="text" id="desc" name="desc"><br>
+
+                <br>
+
+                <label for="keyword">Keywords:</label><br>
+                <input type="text" id="key" name="key"><br>
+
+                <br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
 </html>
