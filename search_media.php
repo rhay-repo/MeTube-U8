@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="homepage-style.css">
 </head>
 
-<h2>Media Search</h2>
+<h1>Media Search</h1>
 
 <body>
 	<form action="search_media.php" method="GET">
@@ -19,6 +19,8 @@
 		<input type="submit" value="Search" />
 	</form>
 </body>
+
+<h1> </h1>
 
 <head>
 	<title>Search results</title>
@@ -39,7 +41,7 @@
 		// changes characters used in html to their equivalents, for example: < to &gt;
 		
 
-        $data_query = "SELECT * from media LIKE '%{$query}%'";
+        $data_query = "SELECT * from media WHERE title LIKE '%{$query}%'";
         $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 
 
