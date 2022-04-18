@@ -1,35 +1,11 @@
 <?php
-    //~
-    // fill this var with dummy value to test later
-    // $_SESSION['new_username'] = 'RJHAY_INCORRECT_VALUE';
 
     // login vars
     require 'headers.php';
 
-    // ~ 
-    // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+    // gather session variables
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
-    $query = "SELECT username, email FROM users WHERE username='{$username}' AND email='{$email}'";
-    $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
-
-    // this is an array
-	$data_array = array();
-    // loop to store data in local array
-    while($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $data_array[] = $line;
-    }
-
-    // store into vars
-    //~
-    //$username = $data_array[0]['username'];
-    // $email = $data_array[0]['email'];
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
-
-    //~
-    // echo "username: " . $username . "<br>";
-    // echo "email: " . $email;
 	
 ?>
 
@@ -38,75 +14,57 @@
 <head>
     <body>
         <form method="POST">
-            <?php echo "<p>Username: " . $_SESSION['username'] . "</p>"; ?>
+            <?php echo "<p>Username: " . $username . "</p>"; ?>
             <input type="text" name="new_username" placeholder="New Username">
-            <input type="submit" name="update_ubutton" value="Save Changes">
-            <!-- <button>Save Changes</button> -->
+            <input type="submit" name="update_username_button" value="Save Changes">
         </form>
 
-        <!-- <form method="POST">
+        <form method="POST">
             <?php echo "<p>Email Address: $email</p>"; ?>
             <input type="text" name="new_email" placeholder="New Email">
-            <button>Save Changes</button>
+            <input type="submit" name="update_email_button" value="Save Changes">
         </form>
 
         <form method="POST">
             <?php echo "<p>Password</p>"; ?>
             <input type="password" name="new_password" placeholder="New Password">
-            <button>Save Changes</button>
-        </form> -->
+            <input type="submit" name="update_password_button" value="Save Changes">
+        </form>
 
-        <?php
-            // set session new_username
-            //~THIS IS NOT WORKING
-            //~FOR SOME REASON, $SESSION['new_username'] IS ALWAYS BLANK
-            // if (isset($_POST['update_username'])) {
-                // $_SESSION['new_username'] = $_POST['new_username'];
-                // $_SESSION['updated'] = $_POST['update_username'];
-                // echo $_POST['updated'];
-            // }
-            // TODO: 
-            // set session new_email
-            // TODO:
-            // set session new_password
+        <?php 
 
-            // require 'headers.php';
-            //~v
-
-            // if(isset($_POST['update_ubutton'])) {
-            //     $username = $_SESSION['username'];
-            //     $email = $_SESSION['email'];
-            //     $new_username = $_SESSION['new_username'];
-            //     //~^
-            
-                // $query = "UPDATE users SET username='{$_SESSION['new_username']}' WHERE username='{$_SESSION['username']}'";
-                // $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
-            //     $_SESSION['username'] = $_SESSION['new_username'];
-            //     header('Location: edit_profile.php');
-            // }
-
-            if(isset($_POST['update_ubutton'])) {
-                
-                echo $username . "<br>";
-                echo $_POST['new_username'] . "<br>";
-                echo $_POST['update_ubutton'];
-
+            // if the user updates their username...
+            if (isset($_POST['update_ubutton'])) {
+                // assign the new username
                 $new_username = $_POST['new_username'];
-
+                // update the that user's username in the database
                 $query = "UPDATE users SET username='{$new_username}' WHERE username='{$username}'";
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
-
+                // replace the session username with the new username
                 $_SESSION['username'] = $new_username;
+            }
 
-                
+            // if the user updates their email...
+            elseif (isset($_POST['update_email_button'])) {
+                // assign the new email address
+                $new_email = $_POST['new_email'];
+                // update the that user's email address in the database
+                $query = "UPDATE users SET email='{$new_email}' WHERE email='{$email}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+                // replace the session email with the new email
+                $_SESSION['email'] = $new_email;
+            }
 
+            // if the user updates their 
+            elseif (isset($_POST['update_password_button'])) {
+                // assign the new password
+                $new_email = $_POST['new_password'];
+                // update the that user's password in the database
+                $query = "UPDATE users SET password='{$new_password}' WHERE username='{$username}' AND email='{$email}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
             }
 
         ?>
-
-
-
-
     </body>
 </head>
 </html>
