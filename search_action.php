@@ -58,8 +58,8 @@
         if ($result->num_rows > 0) {
             while($result_r = mysqli_fetch_row($result)){
                 $title = $result_r[2];     
-                $keywords = $result_r[7]; 
-                $date_published = $result_r[5]; 
+                $keywords = $result_r[8]; 
+                $date_published = $result_r[6]; 
             }
         
             echo 

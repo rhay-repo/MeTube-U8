@@ -87,12 +87,12 @@ TODO:
 		<?php
 	}
 	
-	$vid_id = $_GET['id'];
-	echo "<br>";
-	favorite($vid_id);
-	echo "<br>";
-	echo "<br>";
-	playlists($vid_id);
+	// $vid_id = $_GET['id'];
+	// echo "<br>";
+	// favorite($vid_id);
+	// echo "<br>";
+	// echo "<br>";
+	// playlists($vid_id);
 		
 	// enter description
 	if(!empty($description)) {

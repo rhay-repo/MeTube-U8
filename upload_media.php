@@ -55,7 +55,7 @@
 
                 <div class="form-group">
                 <label for="group">Viewing Group:</label>
-                <select class="form-control" name="group" id="view">
+                <select class="form-control" name="group" id="group">
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
                     <option value="Friends">Friends Only</option>
