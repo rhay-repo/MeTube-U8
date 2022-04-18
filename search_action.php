@@ -57,7 +57,7 @@
 <?php
         if ($result->num_rows > 0) {
             while($result_r = mysqli_fetch_row($result)){
-                $title = $result_r[2];     
+                $title = $result_r[3];     
                 $keywords = $result_r[8]; 
                 $date_published = $result_r[6]; 
             }

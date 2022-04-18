@@ -1,0 +1,28 @@
+body {
+    margin: 0; 
+    padding: 0;
+    background: url(images/galaxy-background.jpg); 
+    background-size: cover;
+    background-position: center;
+    align-content: flex-end;
+    /* background: rgb(187, 215, 255); */
+    font-family: sans-seriff;
+}
+h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+}
+
+h4 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    text-align: left;
+}
+
+h5 {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
