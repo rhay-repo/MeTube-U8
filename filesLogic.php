@@ -22,11 +22,11 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
-    $title = $_GET['fname'];
-    $keywords = $_GET['keyword'];
-    $cat = $_GET['category'];
-    $viewgroup = $_GET['group'];
-    $desc = $_GET['description'];
+    $title = $_POST['fname'];
+    $keywords = $_POST['keyword'];
+    $cat = $_POST['category'];
+    $viewgroup = $_POST['group'];
+    $desc = $_POST['description'];
 
 
 
@@ -38,9 +38,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
             $sql = "INSERT INTO media(filepath, username, title, file_type, file_size, date_published, views, keywords, media_rating, category, viewing_groups, description) VALUES 
-            ('$filename', '$username', '$title', '$extension', $size, GETDATE(), 0, '$keywords', 0, '$cat', '$viewgroup', '$desc')";
+            ('$filename', '$username', '$title', '$extension', $size, curdate(), 0, '$keywords', 0, '$cat', '$viewgroup', '$desc')";
             if (mysqli_query($link, $sql)) {
                 echo "File uploaded successfully";
+                header("Location: contact_list.php");
             }
         } else {
             echo "Failed to upload file.";
