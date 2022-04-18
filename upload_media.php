@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" type="text/css" href="homepage-style.css"> -->
     <body>
         <div>
-          <form action="index.php" method="post" enctype="multipart/form-data" >
+          <form action="upload_media.php" method="post" enctype="multipart/form-data" >
             <h3>Upload File</h3>
             <input type="file" name="myfile"> <br>
             <!-- <button type="submit" name="save">upload</button> -->
@@ -91,23 +91,3 @@
         </div>
     </body>
 </html>
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css">
-    <title>Files Upload and Download</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <form action="index.php" method="post" enctype="multipart/form-data" >
-          <h3>Upload File</h3>
-          <input type="file" name="myfile"> <br>
-          <button type="submit" name="save">upload</button>
-        </form>
-      </div>
-    </div>
-  </body>
-</html> -->
