@@ -1,51 +1,77 @@
 <?php
-    require 'headers.php';
+    include_once "functions.php";
+    include_once "headers.php";
 
-    $target_dir = "media/". $_SESSION['username'];
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $username = $_SESSION['username'];
 
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
+    // creates editable media directory
+    if(!file_exists('media/')) {
+        mkdir('media/');
+        chmod('media', 0755);
+    }
+
+    // creates editable user directory
+    $dir = 'media/'.$username.'/';
+    if(!file_exists($dir)) {
+        mkdir($dir);
+        chmod($dir, 0755);
+
+        if($_FILES["file"]["error"] > 0) {
+            // produces number 1-4
+            $result = $_FILES["file"]["error"];
+        } else {
+            $upload = $dir.urlencode($_FILES["file"]["name"]);
+            while(file_exists($upload)) {
+                $rand = rand();
+                $upload = $dir.urlencode($rand."".$_FILES["file"]["name"]);
+            }
+
+            if(file_exists($upload)) {
+                // file successfully uploaded
+                $result = "5";
+            } else {
+                if(is_uploaded_file($_FILES["file"]["tmp"])) {
+                    if(!move_uploaded_file($_FILES["file"]["tmp"], $upload)) {
+                        // failed to move file successfully
+                        $result = "6";
+                    } else {
+                        $insert = "INSERT INTO media(filepath, username, title, file_type, keywords, category, viewing_groups, description)".
+                        "values(
+                            '$upload',
+                            '$username',
+                            '".$_POST["title"]."',
+                            '".$_FILES["file"]["type"]."',
+                            '".$_POST["keyword"]."',
+                            '".$_POST["category"]."',
+                            '".$_POST["group"]."',
+                            '".mysqli_real_escape_string($link, $_POST["description"])."'
+                            )";
+
+                        $query_insert = mysqli_query($link, $insert) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+                        // successful upload
+                        $result = "0";
+                        chmod($upload, 0644);
+                        $id_query = "SELECT id FROM media WHERE file_path = '$upload'";
+                        $id_result = mysqli_query($link, $id_query);
+                        if(!$id_result) die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
+                        $result_r = mysqli_fetch_row($id_result);
+                        $id = $result_r[0];
+                    }
+                } else {
+                    // failed to upload
+                    $result = "7";
+                }
+            }
+        }
+    }
+
+    if(isset($id)) {
+        ?>
+        <meta http-equiv="refresh" content="0;url=media.php?id=<?php echo $id;?>">
+        <?php
     } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+        ?>
+        <meta http-equiv="refresh" content="0;url=media.php?result=<?php echo $result;?>">
+        <?php
     }
 ?>
