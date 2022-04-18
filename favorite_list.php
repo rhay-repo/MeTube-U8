@@ -9,6 +9,11 @@
     // ~
     // Connecting, selecting database
     // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+
+    function remove_favorite(&$uid, &$file) {
+        $query = "DELETE FROM favorite_list WHERE username='{$uid}' AND filepath='{$file}'";
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+    }
 ?>
 
 <!DOCTYPE html>
