@@ -48,10 +48,10 @@
                 ?>
                 <tr valign="top">
                     <td>
-                        <a href="#"> <?php echo $date_added;?> </a>
+                        <a> <?php echo $date_added;?> </a>
                     </td>
                     <td>
-                        <a> <?php echo $media_name;?> </a>
+                        <a href="#"> <?php echo $media_name;?> </a>
                     </td>
                     <td>
                         <button class="btn"> Favorite </button>
