@@ -22,10 +22,10 @@
 
             <?php
                 // query the database or produce error message 
-                $fav_query = "SELECT * from favoriteList";
-                $fav_result = mysqli_query($link, $fav_query) or die("Query error: ". mysquli_error($link)."\n");
+                $fav_query = "SELECT * from favorite_list";
+                $fav_result = mysqli_query($link, $fav_query) or die("Query error: ". mysqli_error($link)."\n");
 
-                $vid_query = "SELECT media_id, media_name from media";
+                $vid_query = "SELECT filepath, title from media";
                 $vid_result = mysqli_query($link, $vid_query) or die("Query error: ". mysqli_error($link). "\n");
             ?>
 
