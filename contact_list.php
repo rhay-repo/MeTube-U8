@@ -23,6 +23,19 @@
 
 <!DOCTYPE html>
 <html>
+    <style>
+            .container {
+                height: 200px;
+                position: relative;
+            }
+
+            .vertical-center {
+                margin-left: 45%;
+                margin-right: 45%;
+                position: absolute;
+                top: 50%;
+            }
+    </style>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> Contact List </title>
@@ -75,7 +88,11 @@
             </table>
 
             <!-- need to work on the formatting of the button -->
-            <a text-align="center" href="user_list.php"> View User List </a>
+            <div class="container">
+                <div class='vertical-center'>
+                    <a class='btn' href="user_list.php"> View User List </a>
+                </div>
+            </div>
             <h1> </h1>
         </body>
     </head>

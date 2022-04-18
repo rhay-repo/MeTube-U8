@@ -32,15 +32,13 @@
         .container {
             height: 200px;
             position: relative;
-            /* border: 3px solid green; */
         }
 
         .vertical-center {
-            margin: 0;
+            margin-left: 45%;
+            margin-right: 45%;
             position: absolute;
             top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
         }
     </style>
     <head>
@@ -148,7 +146,7 @@
             <!-- need to work on the formatting of the button -->
             <div class="container">
                 <div class='vertical-center'>
-                    <button class='btn' href="contact_list.php"> View Contacts </button>
+                    <a class='btn' href="contact_list.php"> View Contacts </a>
                 </div>
             </div>
         </body>
