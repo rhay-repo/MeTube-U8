@@ -50,10 +50,6 @@
             background-color: #8c72e0;
         }
         
-        .active {
-            background-color: #3a10c4;
-        }
-        
         @media screen and (max-width: 500px) {
             .navbar a {
             float: none;
@@ -90,7 +86,7 @@
         <body>
         
         <div class="navbar">
-            <a class="active" href="guest_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href="guest_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
             
             <div class="dropdown">
                 <button class="dropbtn"> 
@@ -151,10 +147,6 @@
             background-color: #8c72e0;
         }
         
-        .active {
-            background-color: #3a10c4;
-        }
-        
         @media screen and (max-width: 500px) {
             .navbar a {
             float: none;
@@ -191,8 +183,8 @@
         <body>
         
         <div class="navbar">
-             <a class="active" href="user_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
-             <a href="/">Welcome back!</a>
+             <a href="user_homepage.php"><i class="fa fa-fw fa-home"></i> Home</a>
+             <a href="#">Welcome back!</a>
             <div class="dropdown">
                 <button class="dropbtn"> 
                 <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>

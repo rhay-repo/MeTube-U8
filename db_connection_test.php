@@ -18,5 +18,5 @@ if ($result = mysqli_query($con, "SELECT *  FROM 'test'")) {
 }
 
 // Close the connection
-mysqli_close($con);
+//mysqli_close($con);
 ?>
