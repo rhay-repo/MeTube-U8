@@ -1,6 +1,6 @@
 <?php
-     require '../headers.php';
-     include '../db_connection_test.php';
+     require 'headers.php';
+     include 'db_connection_test.php';
 
 // Uploads files
 if (isset($_POST['save'])) { // if save button on the form is clicked
