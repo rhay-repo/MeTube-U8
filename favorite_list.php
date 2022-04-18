@@ -9,6 +9,11 @@
     // ~
     // Connecting, selecting database
     // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+
+    function remove_favorite(&$uid, &$file) {
+        $query = "DELETE FROM favorite_list WHERE username='{$uid}' AND filepath='{$file}'";
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +27,10 @@
 
             <?php
                 // query the database or produce error message 
-                $fav_query = "SELECT * from favoriteList";
-                $fav_result = mysqli_query($link, $fav_query) or die("Query error: ". mysquli_error($link)."\n");
+                $fav_query = "SELECT * from favorite_list";
+                $fav_result = mysqli_query($link, $fav_query) or die("Query error: ". mysqli_error($link)."\n");
 
-                $vid_query = "SELECT media_id, media_name from media";
+                $vid_query = "SELECT filepath, title from media";
                 $vid_result = mysqli_query($link, $vid_query) or die("Query error: ". mysqli_error($link). "\n");
             ?>
 
@@ -43,10 +48,10 @@
                 ?>
                 <tr valign="top">
                     <td>
-                        <a href="#"> <?php echo $date_added;?> </a>
+                        <a> <?php echo $date_added;?> </a>
                     </td>
                     <td>
-                        <a> <?php echo $media_name;?> </a>
+                        <a href="#"> <?php echo $media_name;?> </a>
                     </td>
                     <td>
                         <button class="btn"> Favorite </button>

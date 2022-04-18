@@ -106,7 +106,7 @@
             else {
 
                 // save session variable values
-                //~ (Reagan: do we still need to create user id number?) CREATE USER ID NUMBER
+                //~ (Reagan: do we still need to create user id number?) K: no i think CREATE USER ID NUMBER
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;

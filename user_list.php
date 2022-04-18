@@ -28,6 +28,19 @@
 
 <!DOCTYPE html>
 <html>
+    <style>
+        .container {
+            height: 200px;
+            position: relative;
+        }
+
+        .vertical-center {
+            margin-left: 45%;
+            margin-right: 45%;
+            position: absolute;
+            top: 50%;
+        }
+    </style>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> User List </title>
@@ -74,7 +87,11 @@
                             <?php 
                             if (!check_friend($_SESSION['username'], $user)) {      
                                 // ... print an add friend button ... 
+<<<<<<< HEAD
                                 echo "<input type='submit' name='{$add_user}' value='Add {$user}'>";
+=======
+                                echo "<input class='btn' type='submit' name='{$add_user}' value='Add {$user}'>";
+>>>>>>> 2b4e913f5794b56c9010af17bc74ee936c1604ba
                                 // ... and push the add_user button to the list.
                                 array_push($add_friend_buttons_array, array($add_user, $_SESSION['username'], $user));
                             }
@@ -84,7 +101,11 @@
                             <?php 
                             if (check_friend($_SESSION['username'], $user)) {      
                                 // ... print a remove friend button ... 
+<<<<<<< HEAD
                                 echo "<input type='submit' name='{$remove_user}' value='Remove {$user}'>";
+=======
+                                echo "<input class='btn' type='submit' name='{$remove_user}' value='Remove {$user}'>";
+>>>>>>> 2b4e913f5794b56c9010af17bc74ee936c1604ba
                                 // ... and push the remove_user button to the list.
                                 array_push($remove_friend_buttons_array, array($remove_user, $_SESSION['username'], $user));
                             }
@@ -131,8 +152,11 @@
             </table>
 
             <!-- need to work on the formatting of the button -->
-            <a href="contact_list.php"> View Contacts </a>
-            <h1>  </h1>
+            <div class="container">
+                <div class='vertical-center'>
+                    <a class='btn' href="contact_list.php"> View Contacts </a>
+                </div>
+            </div>
         </body>
     </head>
 </html>
