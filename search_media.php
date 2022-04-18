@@ -1,102 +1,71 @@
 <?php
-    require 'headers.php';
-    include 'db_connection_test.php';
+     require 'headers.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> Media Search </title>
-        <link rel="stylesheet" type="text/css" href="homepage-style.css">
+<title>Media Search</title>
+    <link rel="stylesheet" type="text/css" href="register-style.css">
+<style>
+
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #8c72e0;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 </head>
-
-<h1>Media Search</h1>
-
 <body>
-	<form action="search_media.php" method="GET">
-		<input type="text" name="query" />
-		<input type="submit" value="Search" />
-	</form>
+
+<h4>MeTube Media Search</h4>
+
+<form class="example" action="search_action.php" method = "post">
+  <input type="text" placeholder="Search.." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
 </body>
+</html> 
 
-<h1> </h1>
-
-<head>
-	<title>Search results</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-</head>
-<body>
-<?php
-	$search_query = $_GET['query']; 
-	// gets value sent over search form
-	
-	$min_length = 1;
-	// you can set minimum length of the query if you want
-	
-	if(strlen($search_query) >= $min_length){ // if query length is more or equal minimum length then
-		
-		$query = htmlspecialchars($search_query); 
-		// changes characters used in html to their equivalents, for example: < to &gt;
-		
-
-        $data_query = "SELECT * from media WHERE title LIKE '%{$search_query}%'";
-        $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
-
-
-		while($result_r = mysqli_fetch_row($result)) {
-            $title = $result_r[0];
-            $keywords = $result_r[1];
-            $date_published = $result_r[2];
-        }
-		
-	}
-	else{ // if query length is less than minimum
-		echo "Minimum length is ".$min_length;
-	}
-?>
-
-
-<table class="table center" id="contacts" width="33%" cellpadding="1" cellspacing="1">
-    <tr>
-        <th>Title</th>
-        <th>Keywords</th>
-        <th>Date Published</th>
-    </tr>
-    <?php
-
-        $data_list = "SELECT title, keywords, date_published from media";
-        $result_list = mysqli_query($link, $data_list) or die("Query error test: ". mysqli_error($link)."\n");;
-
-        while($result_r = mysqli_fetch_row($result_list)) {
-            $title = $result_r[0];
-            $keywords = $result_r[1];
-            $date_published = $result_r[2];
-        
-    ?>
-    <tr valign="top">
-        <td>
-            <a> <?php echo $title;?> </a>
-        </td>
-        <td>
-            <a> <?php echo $keywords;?> </a>
-        </td>
-        <td>
-            <a> <?php echo $date_published;?> </a>
-        </td>
-        <td>
-        
-        <form method="post">
-                <button type="submit" name="add" value=<?php $title ?>> Favorite </button>
-        </form>
-        </label>
-
-        </td>
-    </tr>
-    <?php
-        }
-    ?>
-</table>
-</body>
+<!-- <body>
+    <br>
+    <form action="search3.php" method="post">
+        Search <input type="text" name="search"><br>
+        <input type ="submit">
+    </form>
+</body> -->
 </html>
