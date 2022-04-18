@@ -193,6 +193,7 @@
                 <a href="view_profile.php" target="blank"><i class="fa fa-user"></i> Profile</a>
                 <a href="contact_list.php" target="blank"><i class="fa fa-address-book"></i> Contacts</a>
                 <a href="search_media.php" target="blank"><i class="fa fa-search"></i> Search Media</a>
+                <a href="upload_media.php" target="blank"><i class="fa fa-upload"></i> Upload Media</a>
                 <a href="edit_profile.php" target="blank"><i class="fa fa-cog"></i> Settings</a>
 	            <a href="logout.php" target="blank"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>

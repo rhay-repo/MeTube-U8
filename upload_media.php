@@ -1,6 +1,6 @@
 <?php
 
-    require 'headers.php';
+    include 'filesLogic.php'
 
 ?>
 
@@ -10,11 +10,12 @@
     <title> Upload Media </title>
     <!-- <link rel="stylesheet" type="text/css" href="homepage-style.css"> -->
     <body>
-        <h1> Upload Media </h1>
         <div>
-            <form class="form-signin" method="post" enctype="multipart/form-data" action="action_page.php">
-                <label for="file"> Add Media: </label>
-                <input type="file" id="myFile" name="filename">
+          <form action="index.php" method="post" enctype="multipart/form-data" >
+            <h3>Upload File</h3>
+            <input type="file" name="myfile"> <br>
+            <!-- <button type="submit" name="save">upload</button> -->
+            
 
                 <br>
                 <br>
@@ -23,16 +24,6 @@
                 <input type="text" id="fname" name="fname"><br>
 
                 <br>
-
-                <!-- <label for="file_type">File Type:</label><br>
-                <input type="radio" id="jpg" name="file_type" value="JPG">
-                <label for="jpg">JPG</label><br>
-                <input type="radio" id="png" name="file_type" value="PNG">
-                <label for="png">PNG</label><br>
-                <input type="radio" id="jpeg" name="file_type" value="JPEG">
-                <label for="jpeg">JPEG</label><br>
-                <input type="radio" id="gif" name="file_type" value="GIF">
-                <label for="gif">GIF</label><br> -->
 
                 <br>
 
@@ -78,7 +69,7 @@
                 <label for="Private">Private</label><br>
                 <input type="radio" id="friends" name="view_group" value="Friends">
                 <label for="Friends">Friends</label><br> -->
-                
+
                 <br>
 
                 <label for="description">Description:</label><br>
@@ -95,8 +86,28 @@
 
                 <br>
 
-                <button type="submit" value="Submit"> Upload </button>
+              <button type="submit" name="save">upload</button>
             </form>
         </div>
     </body>
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <title>Files Upload and Download</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <form action="index.php" method="post" enctype="multipart/form-data" >
+          <h3>Upload File</h3>
+          <input type="file" name="myfile"> <br>
+          <button type="submit" name="save">upload</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html> -->
