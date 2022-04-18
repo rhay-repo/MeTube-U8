@@ -19,15 +19,39 @@
 	<title>Search results</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <style>
+        .button {
+            background-color: #e0e0e0;
+            border: none;
+            color: #8c72e0;
+            padding: 4px 4px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            height:25px; 
+            width:120px; 
+            margin: -30px -75px; 
+            position:relative;
+            top:50%; 
+            left:50%;
+        }
+        </style>
 </head>
 <body>
 
     <?php
         $search = $_POST['search'];
+
+        if ($search == '') {
+            header("Location: search_media.php");
+        }
+        else {
         
-        $sql = "SELECT * FROM media WHERE title LIKE '%$search%' OR keywords LIKE '%$search%'";
-    
-        $result = $con->query($sql);
+            $sql = "SELECT * FROM media WHERE title LIKE '%$search%' OR keywords LIKE '%$search%'";
+        
+            $result = $con->query($sql);
+        }
     ?>
 
 <?php
@@ -79,6 +103,8 @@
      
     ?>
 
+     <a href="search_media.php" class="button">Search Again</a><br><br>
+    
 </table>
 </body>
 </html>
