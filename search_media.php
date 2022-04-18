@@ -39,7 +39,7 @@ form.example button {
 }
 
 form.example button:hover {
-  background: #0b7dda;
+  background: #3207ba;
 }
 
 form.example::after {
