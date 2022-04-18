@@ -51,6 +51,12 @@ h3 {
     background-color: red;
 }
 
+h4 {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    text-align: left;
+}
+
 h5 {
     color: rgb(255, 255, 255);
     font-size: 20px;
