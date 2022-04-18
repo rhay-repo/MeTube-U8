@@ -5,6 +5,7 @@
 <title>View Profile</title>
     <link rel="stylesheet" type="text/css" href="user-style.css">
 
+    
 </head>
 <body>
 
@@ -58,7 +59,7 @@
             }
         
             echo 
-            '<table class="table center" id="contacts" width="25%" cellpadding="1" cellspacing="1">
+            '<table class="table center" id="contacts" width="10%" cellpadding="1" cellspacing="1">
                 <tr>
                     <th>Title</th>
                     <th>Date Published</th>
@@ -93,8 +94,6 @@
                     <td>
                         <a>' .$description;
             echo '
-                    </td>
-                    <td>
                     </td>
                     </tr>';
         }
