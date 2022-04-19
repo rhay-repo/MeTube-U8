@@ -70,7 +70,7 @@ form.example::after {
   <input type="submit" name="education" value="Education">
   <input type="submit" name="comedy" value="Comedy">
 </form>
-
+<br>
 <?php
   $data_query = "SELECT title, keywords, date_published FROM media";
   $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
