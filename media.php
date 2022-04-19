@@ -1,6 +1,31 @@
 <?php
 	require 'headers.php';
 	include 'db_connection_test.php';
+
+	function add_friend(&$uid, &$uidf) {
+		if($_SESSION['username'] != NULL) {
+			$query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+		} else {
+			$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
+
+			echo $_SESSION['error'];
+			unset($_SESSION['error']);
+		}
+    }
+
+	function subscribe(&$uid, &$uidf) {
+		if($_SESSION['username'] != NULL) {
+			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+		}
+		//  else {
+		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
+
+		// 	echo $_SESSION['error'];
+		// 	unset($_SESSION['error']);
+		// }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +77,7 @@
 		<?php
 			// if(isset($_SESSION['media_id'])) {
 				// $media_id = $_SESSION['media_id'];
-				$_SESSION['media_id'] = 3;
+				$_SESSION['media_id'] = 9;
 				$media_id = $_SESSION['media_id'];
 
 				$query = "SELECT * FROM media WHERE id = '{$media_id}'";
@@ -103,8 +128,8 @@
 						echo "<h3>Published by ".$user."!</h3>";
 						echo "<div class='btn-group' style='width:100%'>
 								<button style='width=25%'>Channel</button>
-								<button style='width=25%'>Subscribe</button>
-								<button style='width=25%'>Add Friend</button>
+								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
+								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
 								<button style='width=25%'>Download</button>
 							</div>";
 						
@@ -122,8 +147,8 @@
 						echo "<h3>Published by ".$user."!</h3>";
 						echo "<div class='btn-group' style='width:100%'>
 								<button style='width=25%'>Channel</button>
-								<button style='width=25%'>Subscribe</button>
-								<button style='width=25%'>Add Friend</button>
+								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
+								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
 								<button style='width=25%'>Download</button>
 							</div>";
 						
