@@ -14,30 +14,29 @@
     include 'db_connection_test.php';
     
     $id=$_SESSION['username'];
+    $user_email=$_SESSION['email'];
     $query=mysqli_query($con,"SELECT * FROM users where username='$id'")or die(mysqli_error());
     $row=mysqli_fetch_array($query);
   ?>
-  <h1>User Profile</h1>
-  <div class="profile-input-field">
-    <div class="form-group">
-      <?php echo "<font color=white>"?>
-      <label>Email: </label>
-      <?php echo "<font color=white>" . $row['email']; ?>
-    </div>
-    <br>
-    <div class="form-group">
-      <label>Username: </label>
-      <?php echo $row['username']; ?>
-    </div>
-  </div>
-
-
-  <head>
-	<title>User Media</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-
-</head>
+    <?php echo 
+        '<table class="table center" id="contacts" width="50%" cellpadding="1" cellspacing="1">
+            <br><h1>Your Profile</h1>    
+            <tr>
+                <th>Email</th>
+                <th>Username</th>
+            </tr>
+        
+            <tr valign="top">
+                <td>
+                    <a>' .$user_email;
+        echo '
+                </td>
+                <td>
+                    <a>' .$id;
+        echo '</a>
+                </td>';
+    ?>
+            
 <body>
 
     <?php
@@ -60,6 +59,7 @@
         
             echo 
             '<table class="table center" id="contacts" width="10%" cellpadding="1" cellspacing="1">
+                <br><br><h1>Your Media</h1>
                 <tr>
                     <th>Title</th>
                     <th>Date Published</th>
