@@ -58,7 +58,6 @@
                 <select class="form-control" name="group" id="group">
                     <option value="Public">Public</option>
                     <option value="Private">Private</option>
-                    <option value="Friends">Friends Only</option>
                 </select>
                 </div>
 
