@@ -6,6 +6,7 @@
     // ~
     // Connecting, selecting database
     //$link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+    $remove_friend_buttons_array = array();
 
     function add_friend(&$uid, &$uidf) {
         // echo $uid ."\n";
@@ -67,7 +68,15 @@
                     </td>
                     <td>
                         <form method="post">
-                            <button class="btn" type="submit" name="remove" value=<?php $user ?>> Remove Friend </button>
+                            <?php $remove_user = "remove_" . $user;?>
+
+                            <!-- <button class="btn" type="submit" name="remove" value=<?php $user ?>> Remove Friend </button> -->
+                            <?php
+                                // ... print a remove friend button ... 
+                                echo "<input type='submit' name='{$remove_user}' value='Remove {$user}'>";
+                                // ... and push the remove_user button to the list.
+                                array_push($remove_friend_buttons_array, array($remove_user, $_SESSION['username'], $user));
+                            ?>
                         </form>
 
 
@@ -78,13 +87,18 @@
                 ?>
 
                 <?php    
-                            if(array_key_exists('remove', $_POST)) {
-                                $mainuser = $_SESSION['username'];
-                                // echo "help!". $mainuser ."\n";
-                                // echo $user;
-                                remove_friend($mainuser, $user);
-                            }
-                    ?>
+                        $cnt = 0;
+                        // loop through the array of remove button names
+                        // for every button name
+                        foreach ($remove_friend_buttons_array as $key => $value_array) {
+                            // ... check if button has been clicked ...
+                            if (isset($_POST[$value_array[0]]) && $cnt < 1) {
+                                // ... then remove respective user.
+                                remove_friend($value_array[1], $value_array[2]);
+                                $cnt++;
+                            }   
+                        }
+                ?>
             </table>
 
             <!-- need to work on the formatting of the button -->
