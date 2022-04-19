@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Media Search</title>
-    <link rel="stylesheet" type="text/css" href="register-style.css">
+    <link rel="stylesheet" type="text/css" href="homepage-style.css">
 <style>
 
 body {
@@ -51,14 +51,14 @@ form.example::after {
 </head>
 <body>
 
-<h4>MeTube Media Search</h4>
+<h1>MeTube Media Search</h1>
 
 <form class="example" action="search_action.php" method = "post">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
 <!-- </form> -->
 <br><br>
-<h4>Search by Category</h4>
+<h1>Search by Category</h1>
 
 <!-- <form class="category" action="search_action.php" method = "post"> -->
   <input type="submit" name="music" value="Music">
@@ -72,9 +72,8 @@ form.example::after {
 </form>
 
 <?php
-  $data_query = "SELECT (title, keywords, date_published) FROM media";
+  $data_query = "SELECT title, keywords, date_published FROM media";
   $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
-  echo "TEST";
 ?>
 
 <table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
