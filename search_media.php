@@ -56,6 +56,19 @@ form.example::after {
 <form class="example" action="search_action.php" method = "post">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit"><i class="fa fa-search"></i></button>
+<!-- </form> -->
+<br><br>
+<h4>Search by Category</h4>
+
+<!-- <form class="category" action="search_action.php" method = "post"> -->
+  <input type="submit" name="music" value="Music">
+  <input type="submit" name="sports" value="Sports">
+  <input type="submit" name="gaming" value="Gaming">
+  <input type="submit" name="movies" value="Movies">
+  <input type="submit" name="tvshows" value="TV Shows">
+  <input type="submit" name="news" value="News">
+  <input type="submit" name="education" value="Education">
+  <input type="submit" name="comedy" value="Comedy">
 </form>
 
 </body>
