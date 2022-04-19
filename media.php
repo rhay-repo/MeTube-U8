@@ -18,9 +18,11 @@
 
 				echo $media_id;
 
-				echo "<img src='media/me/flasklogo.jpg' >";
+				echo "<img src='media/me/goodvibes.jpg' width='460' height='345' >";
 
 			// }
 		?>
+
+		<img src='*/images/rjhay/goodvibes.jpg' width='460' height='345' >
 	</body>
 </html>
