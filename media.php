@@ -26,6 +26,13 @@
 		// 	unset($_SESSION['error']);
 		// }
     }
+
+	function favorite(&$user, &$file) {
+		if($_SESSION['username'] != NULL) {
+			$query = "INSERT INTO favorite_list VALUE ('{$user}', '{$file}', curdate())";
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +137,7 @@
 								<button style='width=25%'>Channel</button>
 								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
 								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
-								<button style='width=25%'>Download</button>
+								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 
 						echo "<form action='filesLogic.php' method='post'>
@@ -152,7 +159,7 @@
 								<button style='width=25%'>Channel</button>
 								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
 								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
-								<button style='width=25%'>Download</button>
+								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 						
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";

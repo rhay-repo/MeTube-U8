@@ -58,6 +58,45 @@ form.example::after {
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
+<?php
+  $data_query = "SELECT (title, keywords, date_published) FROM media";
+  $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
+  echo "TEST";
+?>
+
+<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>Title</th>
+                    <th>Keywords</th>
+                    <th>Date Published</th>
+                    <th>Favorite Media</th>
+                </tr>
+                <?php
+                    while($result_r = mysqli_fetch_row($result)) {
+                        $title = $result_r[0];
+                        $key = $result_r[1];
+                        $date = $result_r[2]; 
+                ?>
+                <tr valign="top">
+                    <td>
+                        <a> <?php echo $title;?> </a>
+                    </td>
+                    <td>
+                        <a> <?php echo $key;?> </a>
+                    </td>
+                    <td>
+                        <a> <?php echo $date;?> </a>
+                    </td>
+                    <td>
+                        <form method="post">
+                          <button> Add Stuff Here Later </button>                           
+                        </form>                    
+                    </td>
+                </tr>
+                <?php
+                    }
+                ?>
+  </table>
 </body>
 </html> 
 
