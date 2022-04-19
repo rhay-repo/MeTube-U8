@@ -42,26 +42,48 @@
 
     <?php
 
-        $search = $_POST['search'];
-
-        if ($search == '') {
+        if (isset($_POST['music'])) {
+            $val = $_POST['music'];
+        } 
+        else if (isset($_POST['sports'])) {
+            $val = $_POST['sports'];
+        }
+        else if (isset($_POST['gaming'])) {
+            $val = $_POST['gaming'];
+        }
+        else if (isset($_POST['movies'])) {
+            $val = $_POST['movies'];
+        }
+        else if (isset($_POST['tvshows'])) {
+            $val = $_POST['tvshows'];
+        }
+        else if (isset($_POST['news'])) {
+            $val = $_POST['news'];
+        }
+        else if (isset($_POST['education'])) {
+            $val = $_POST['education'];
+        }
+        else if (isset($_POST['comedy'])) {
+            $val = $_POST['comedy'];
+        }
+        else {
+            $val = $_POST['search'];
+        }
+  
+        if ($val == '') {
             header("Location: search_media.php");
         }
         else {
         
-            $sql = "SELECT * FROM media WHERE title LIKE '%$search%' OR keywords LIKE '%$search%' OR category LIKE '$search'";
+            $sql = "SELECT * FROM media WHERE title LIKE '%$val%' OR keywords LIKE '%$val%' OR category LIKE '$val'";
         
-            $result = $con->query($sql);
+           // $result = $con->query($sql);
+            $result = mysqli_query($link, $sql) or die("Query error: ". mysqli_error($link)."\n");;
+
         }
     ?>
 
 <?php
-        if ($result->num_rows > 0) {
-            while($result_r = mysqli_fetch_row($result)){
-                $title = $result_r[3];     
-                $keywords = $result_r[8]; 
-                $date_published = $result_r[6]; 
-            }
         
             echo 
             '<table class="table center" id="contacts" width="25%" cellpadding="1" cellspacing="1">
@@ -70,25 +92,32 @@
                     <th>Keywords</th>
                     <th>Date Published</th>
                     <th>Favorite Media</th>
-                </tr>
-            
+                </tr>';
+                    
+                if ($result->num_rows > 0) {
+                    while($result_r = mysqli_fetch_row($result)){
+                        $title = $result_r[3];     
+                        $keywords = $result_r[8]; 
+                        $date_published = $result_r[6]; 
+                    
                 
-                <tr valign="top">
-                    <td>
-                        <a>' .$title;
-            echo '
-                    </td>
-                    <td>
-                        <a>' .$keywords;
-            echo '</a>
-                    </td>
-                    <td>
-                        <a>' .$date_published;
-            echo '</a>
-                    </td>
-                    <td>
-                    </td>
-                    </tr>';
+                    echo '<tr valign="top">
+                        <td>
+                            <a>' .$title;
+                    echo '
+                            </td>
+                            <td>
+                                <a>' .$keywords;
+                    echo '</a>
+                            </td>
+                            <td>
+                                <a>' .$date_published;
+                    echo '</a>
+                            </td>
+                            <td>
+                            </td>
+                            </tr>';
+                    }
                     
                 //     <form method="post">
                 //             <button type="submit" name="add" value=<?php $title >> Favorite </button>
@@ -99,7 +128,7 @@
                 // </tr>';
         }
         else {
-            echo "<h4> <font color=white> No results for '". $search ."'</h4>";
+            echo "<h4> <font color=white> No results for '". $val ."'</h4>";
         }
      
     ?>
