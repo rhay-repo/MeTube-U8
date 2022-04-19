@@ -43,22 +43,8 @@
             <h1> Favorites List </h1>
 
             <?php
-                // query the database or produce error message 
-                // $fav_query = "SELECT * from favorite_list";
-                // $fav_result = mysqli_query($link, $fav_query) or die("Query error: ". mysqli_error($link)."\n");
-
-                // while($result_r = mysqli_fetch_row($fav_result)) {
-                //     $user = $result_r[0]; 
-                //     $file = $result_r[1];
-                //     $time = $result_r[2];
-                // }
-
-                // $vid_query = "SELECT title FROM media WHERE filepath='{$file}'";
-                // $vid_result = mysqli_query($link, $vid_query) or die("Query error: ". mysqli_error($link). "\n");
-
-                $fav = "SELECT favorite_list.username, favorite_list.time, media.title FROM favorite_list INNER JOIN media ON favorite_list.filepath = media.title WHERE favorite_list.username = media.username";
+                $fav = "SELECT favorite_list.username, favorite_list.time, media.title FROM favorite_list INNER JOIN media ON favorite_list.filepath = media.filepath WHERE favorite_list.username = media.username";
                 $f_result = mysqli_query($link, $fav) or die("Query error: ". mysqli_error($link). "\n");
-
             ?>
 
             <table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
@@ -69,13 +55,9 @@
                 </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($f_result)) {
-                    // while($result_rfav = mysqli_fetch_row($fav_result) && $result_rvid = mysqli_fetch_row($vid_result)) {
                         $username = $result_r[0];
                         $time = $result_r[1];
-                        $media_name = $result_r[2];
-
-                        echo $username ." ". $time ." ". $media_name ."\n";
-                    
+                        $media_name = $result_r[2];                    
                 ?>
                 <tr valign="top">
                     <td>
@@ -91,9 +73,9 @@
                         <?php $add_fav = "add_" . $media_name;?>
                         <?php $remove_fav = "remove_" . $media_name;?>
 
-                        <!-- if the user and the contact are NOT already friends... -->
+                        <!-- if the media is already in the list... -->
                         <?php 
-                        if (!check_favorite($_SESSION['username'], $media_name)) {      
+                        if (check_favorite($_SESSION['username'], $media_name)) {      
                             // ... print an add friend button ... 
                             echo "<input type='submit' name='{$add_fav}' value='Add {$media_name}'>";
                             // ... and push the add_user button to the list.
@@ -101,17 +83,15 @@
                         }
                         ?>
 
-                        <!-- if the user and the contact are already friends... -->
+                        <!-- if the media is not already in the list... -->
                         <?php 
-                        if (check_favorite($_SESSION['username'], $media_name)) {      
+                        if (!check_favorite($_SESSION['username'], $media_name)) {      
                             // ... print a remove friend button ... 
                             echo "<input type='submit' name='{$remove_fav}' value='Remove {$media_name}'>";
                             // ... and push the remove_user button to the list.
                             array_push($remove_favorite_buttons_array, array($remove_fav, $_SESSION['username'], $media_name));
                         }
                         ?>
-
-                        
                     </form>                                     
                 </td>
                 </tr>
@@ -147,7 +127,6 @@
 
                 ?>
             </table>
-
         </body>
     </head>
 </html>

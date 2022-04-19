@@ -140,7 +140,7 @@
 								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 
-						echo "<form action='filesLogic.php' method='post'>
+						echo "<br><form action='filesLogic.php' method='post'>
 								<button type='submit' name='download'>DOWNDLOAD</button>";
 						
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
@@ -162,6 +162,9 @@
 								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 						
+						echo "<br><form action='filesLogic.php' method='post'>
+							<button type='submit' name='download'>DOWNDLOAD</button>";
+							
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
 						echo "<h3> Description: ". $desc."</h3> <br><br>";
