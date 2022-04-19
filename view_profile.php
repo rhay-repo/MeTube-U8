@@ -47,7 +47,18 @@
     ?>
 
 <?php
+    echo ' <table class="table center" id="contacts" width="10%" cellpadding="1" cellspacing="1">
+             <br><br><h1>Your Media</h1>
+                 <tr>
+                    <th>Title</th>
+                    <th>Date Published</th>
+                    <th>Views</th>
+                    <th>Keywords</th>
+                    <th>Viewing Groups</th>
+                    <th>Description</th>
+                </tr>';
         if ($result->num_rows > 0) {
+            
             while($result_r = mysqli_fetch_row($result)){
                 $title = $result_r[3];     
                 $date_published = $result_r[6]; 
@@ -55,22 +66,9 @@
                 $keywords = $result_r[8]; 
                 $viewing_groups = $result_r[11]; 
                 $description = $result_r[12]; 
-            }
-        
-            echo 
-            '<table class="table center" id="contacts" width="10%" cellpadding="1" cellspacing="1">
-                <br><br><h1>Your Media</h1>
-                <tr>
-                    <th>Title</th>
-                    <th>Date Published</th>
-                    <th>Views</th>
-                    <th>Keywords</th>
-                    <th>Viewing Groups</th>
-                    <th>Description</th>
-                </tr>
-            
-                
-                <tr valign="top">
+
+                echo '   
+                    <tr valign="top">
                     <td>
                         <a>' .$title;
             echo '
@@ -96,6 +94,47 @@
             echo '
                     </td>
                     </tr>';
+            }
+        
+            // echo 
+            // '<table class="table center" id="contacts" width="10%" cellpadding="1" cellspacing="1">
+            //     <br><br><h1>Your Media</h1>
+            //     <tr>
+            //         <th>Title</th>
+            //         <th>Date Published</th>
+            //         <th>Views</th>
+            //         <th>Keywords</th>
+            //         <th>Viewing Groups</th>
+            //         <th>Description</th>
+            //     </tr>
+            
+                
+            //     <tr valign="top">
+            //         <td>
+            //             <a>' .$title;
+            // echo '
+            //         </td>
+            //         <td>
+            //             <a>' .$date_published;
+            // echo '</a>
+            //         </td>
+            //         <td>
+            //             <a>' .$views;
+            // echo '</a>
+            //         </td>
+            //         <td>
+            //             <a>' .$keywords;
+            // echo '
+            //         </td>
+            //         <td>
+            //             <a>' .$viewing_groups;
+            // echo '
+            //         </td>
+            //         <td>
+            //             <a>' .$description;
+            // echo '
+            //         </td>
+            //         </tr>';
         }
       
     ?>

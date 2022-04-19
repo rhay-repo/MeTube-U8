@@ -132,6 +132,9 @@
 								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
 								<button style='width=25%'>Download</button>
 							</div>";
+
+						echo "<form action='filesLogic.php' method='post'>
+								<button type='submit' name='download'>DOWNDLOAD</button>";
 						
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";

@@ -41,7 +41,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
             ('$filename', '$username', '$title', '$extension', $size, curdate(), 0, '$keywords', 0, '$cat', '$viewgroup', '$desc')";
             if (mysqli_query($link, $sql)) {
                 echo "File uploaded successfully";
-                header("Location: contact_list.php");
+                header("Location: media.php");
             }
         } else {
             echo "Failed to upload file.";
