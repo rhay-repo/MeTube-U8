@@ -41,14 +41,48 @@
 <body>
 
     <?php
-        $search = $_POST['search'];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // if (isset($_POST['search'])) {
+            //     $search = $_POST['search'];
+            // } 
+            if (isset($_POST['music'])) {
+                $search = $_POST['music'];
+            } 
+            else if (isset($_POST['sports'])) {
+                $search = $_POST['sports'];
+            }
+            else if (isset($_POST['gaming'])) {
+                $search = $_POST['gaming'];
+            }
+            else if (isset($_POST['movies'])) {
+                $search = $_POST['movies'];
+            }
+            else if (isset($_POST['tvshows'])) {
+                $search = $_POST['tvshows'];
+            }
+            else if (isset($_POST['news'])) {
+                $search = $_POST['news'];
+            }
+            else if (isset($_POST['education'])) {
+                $search = $_POST['education'];
+            }
+            else if (isset($_POST['comedy'])) {
+                $search = $_POST['comedy'];
+            }
+            else {
+                $search = $_POST['search'];
+            }
+        }
+
+        // $search = $_POST['search'];
 
         if ($search == '') {
             header("Location: search_media.php");
         }
         else {
         
-            $sql = "SELECT * FROM media WHERE title LIKE '%$search%' OR keywords LIKE '%$search%'";
+            $sql = "SELECT * FROM media WHERE title LIKE '%$search%' OR keywords LIKE '%$search%' OR category LIKE '$search";
         
             $result = $con->query($sql);
         }
