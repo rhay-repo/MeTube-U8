@@ -86,7 +86,7 @@
 
                 <br>
 
-              <button type="submit" name="save">upload</button>
+              <button type="submit" name="save">UPLOAD</button>
             </form>
         </div>
     </body>

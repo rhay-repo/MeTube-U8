@@ -53,5 +53,32 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 // Download Media
 if(isset($_GET['filepath'])) {
     $id = $_GET['filepath'];
+
+    $sql = "SELECT * FROM media WHERE filepath = '{$filepath}'";
+    $result = mysqli_query($_SESSION['link'], $sql) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+
+    $file = mysqli_fetch_assoc($result);
+
+    // $media_id = $result[0];
+     $filepath = $result[1];
+    // $user = $result[2];
+
+    $url = 'media/'.$user.'/'.$file['filepath'];
+
+    if(file_exists($url)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename=' . basename($url));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize('uploads/' . $user. '/'. $file['filepath']));
+        readfile('uploads/' . $file['filepath']);
+
+        $download = "INSERT INTO download_media(username, filepath, time) VALUES ('{$_SESSION['username']}', '$filepath', curdate())";
+        $result_down = mysqli_query($_SESSION['link'], $download) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        exit;
+
+    }
 }
 ?>
