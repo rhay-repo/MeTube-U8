@@ -8,17 +8,17 @@
 
     function add_friend(&$uid, &$uidf) {
         $query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function remove_friend(&$uid, &$uidf) {
         $query = "DELETE FROM contact_list WHERE username='{$uid}' AND contact='{$uidf}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function check_friend(&$uid, &$uidf) {
         $query = "SELECT * FROM contact_list WHERE username = '{$uid}' AND contact = '{$uidf}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error : ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error : ". mysqli_error($_SESSION['link'])."\n");
 
         if($result->num_rows == 0) {
             return false;
