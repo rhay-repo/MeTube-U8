@@ -198,7 +198,7 @@
                 <a href="favorite_list.php" target="blank"><i class="fa fa-heart"></i> Favorites</a>
                 <a href="channels.php" target="blank"><i class="fa fa-youtube-play"></i> Channels</a>
                 <a href="playlists.php" target="blank"><i class="fa fa-play"></i> Playlists</a>
-                <a href="messages_inbox.php" target="blank"><i class="fa fa-comments"></i> Messages</a>
+                <a href="messages.php" target="blank"><i class="fa fa-comments"></i> Messages</a>
                 <a href="edit_profile.php" target="blank"><i class="fa fa-cog"></i> Settings</a>
 	            <a href="logout.php" target="blank"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>
