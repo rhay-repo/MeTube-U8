@@ -190,10 +190,15 @@
                 <i class="fa fa-fw fa-user"></i><i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                <a href="view_profile.php" target="blank"><i class="fa fa-user"></i> Profile</a>
+                <a href="view_profile.php" target="blank"><i class="fa fa-user-circle-o"></i> Profile</a>
                 <a href="contact_list.php" target="blank"><i class="fa fa-address-book"></i> Contacts</a>
+                <a href="user_list.php" target="blank"><i class="fa fa-user"></i> Users</a>
                 <a href="search_media.php" target="blank"><i class="fa fa-search"></i> Search Media</a>
                 <a href="upload_media.php" target="blank"><i class="fa fa-upload"></i> Upload Media</a>
+                <a href="favorite_list.php" target="blank"><i class="fa fa-heart"></i> Favorites</a>
+                <a href="channels.php" target="blank"><i class="fa fa-youtube-play"></i> Channels</a>
+                <a href="playlists.php" target="blank"><i class="fa fa-play"></i> Playlists</a>
+                <a href="messages_inbox.php" target="blank"><i class="fa fa-comments"></i> Messages</a>
                 <a href="edit_profile.php" target="blank"><i class="fa fa-cog"></i> Settings</a>
 	            <a href="logout.php" target="blank"><i class="fa fa-sign-out"></i> Logout</a>
                 </div>
