@@ -27,7 +27,7 @@
             <input type="password" name="password" placeholder="Password">
 
             <input type="submit" name="loginbutton" value="Login">
-            <a href="too-bad.html">Forgot your password?</a><br>
+            <!--~ <a href="too-bad.html">Forgot your password?</a><br> -->
             <a href="register.php">Don't have an account? Register here</a>
         </form>
 
@@ -42,40 +42,53 @@
             // gather variable info from html form
             $username = $_POST['username']; // gathered from name 'username'
             $password = $_POST['password']; // gathered from name 'password'
+            
+            // ~ TODO: change every special character in $password from "x" to "\x"
 
-            // print the count query
-            $count_users_query = "SELECT COUNT(*) as cnt from users where username='{$username}'";
+
+            // query: find how mnay users have the name $username
+            // $count_users_query = "SELECT COUNT(*) as cnt from users where username='{$username}'";
+            $count_users_query = "SELECT username from users where username='{$username}'";
             $count_users_result = mysqli_query($link, $count_users_query) or die("Query error: ". mysqli_error($link)."\n");
-
-            if($count_users_result->num_rows == 0) {
-                $error .= "<h3>username $username does not exist!</h3><br>";
-                $err_counter++;
-            }
-
-            echo "number of users with the username $username = " . $count_users_result->num_rows . "<br>";
 
             $matching_password_query = "SELECT * from users WHERE username='{$username}' and password='{$password}'";
             $matching_password_result = mysqli_query($link, $matching_password_query) or die("Query error: ". mysqli_error($link)."\n");
-
-            if($matching_password_result->num_rows == 0) {
-                $error .= "<h3>incorrect password</h3><br>";
-                $err_counter++;
-            }
-
-            //~
-            echo "number of users with the credentials: $username/$password = " . $matching_password_result->num_rows . "<br>";
-
-
+            
             // deny if any field is blank
             if ($username == '' or $password == '') {
                 $error .= "<h3>no field can be left blank!</h3><br>";
                 $err_counter++;
             }
 
+            elseif ($count_users_result->num_rows == 0) {
+                $error .= "<h3>username $username does not exist!</h3><br>";
+                $err_counter++;
+            }
+
+            // echo "number of users with the username $username = " . $count_users_result->num_rows . "<br>";
+
+            // $matching_password_query = "SELECT * from users WHERE username='{$username}' and password='{$password}'";
+            // $matching_password_result = mysqli_query($link, $matching_password_query) or die("Query error: ". mysqli_error($link)."\n");
+
+            elseif ($matching_password_result->num_rows == 0) {
+                $error .= "<h3>incorrect password</h3><br>";
+                $err_counter++;
+            }
+
+            //~
+            // echo "number of users with the credentials: $username/$password = " . $matching_password_result->num_rows . "<br>";
+
+
+            // // deny if any field is blank
+            // if ($username == '' or $password == '') {
+            //     $error .= "<h3>no field can be left blank!</h3><br>";
+            //     $err_counter++;
+            // }
+
             //~
             if ($err_counter > 0) {
                 echo $error;
-                echo "<h3>\$err_counter = " . $err_counter . "</h3>";
+                // echo "<h3>\$err_counter = " . $err_counter . "</h3>";
             }
 
             // otherwise, accept the login and add take the user to the home page
