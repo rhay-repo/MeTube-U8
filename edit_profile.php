@@ -78,8 +78,6 @@
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
                 // replace the session email with the new email
                 $_SESSION['email'] = $new_email;
-                // refresh the page
-                // header("Refresh:10");
             }
 
             // if the user updates their 
@@ -91,6 +89,8 @@
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
             }
 
+<<<<<<< HEAD
+=======
             elseif (isset($_POST['update_view_button'])) {
                 // assign the new password
                 $new_view = $_POST['new_view'];
@@ -108,6 +108,7 @@
             //     echo $cnt;
             // }
 
+>>>>>>> 67df0c0fbc5c47befdffb7bf38c933ca1490790d
         ?>
     </body>
 </head>
