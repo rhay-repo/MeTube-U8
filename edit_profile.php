@@ -22,10 +22,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        p {
+			text-align: center; 
+			color: white;
+		}
+        form {
+            margin: auto; 
+            width: 220px;
+        }
+    </style>
+    <title> Settings </title>
+    <link rel="stylesheet" type="text/css" href="homepage-style.css">
+
     <body>
+        <h1> Edit Profile: </h1>
         <form method="POST">
             <?php echo "<p>Username: " . $username . "</p>"; ?>
-            <input type="text" name="new_username" placeholder="New Username">
+            <input type="text" name="new_username" placeholder="New Username"> 
             <input type="submit" name="update_username_button" value="Save Changes">
         </form>
 
