@@ -27,9 +27,9 @@ textarea { resize: none; }
             <h1> Message people on MeTube! </h1>
 
             <form method="POST">
-                <h2>Type in someone's username:</h2>
+                <h2 style="text-align:left;">To message someone for the first time or reply to them, type in their username:</h2>
                 <input type="text" id="recipient_username" name="recipient_username"><br>
-                <h2>Type in your message:</h2>
+                <h2 style="text-align:left;">Type in your message:</h2>
                 <textarea id="message_text" name="message_text" rows="4"></textarea><br>
                 <input type='submit' name='send_message_button' value='Send Message!'>
             </form>
@@ -49,23 +49,34 @@ textarea { resize: none; }
 
             ?>
 
-            <table width="25%" cellpadding="0.5" cellspacing="0.5">
-            <!-- loop through every row of results and print user and their message -->
-            <?php 
-            while($result_r = mysqli_fetch_row($result)){
-                $the_sender = $result_r[0];     
-                $the_message = $result_r[1];
-                if ($the_sender == $sender) {
-                    echo "<tr><th><h4 class='message'><span class='sender'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
-                }
-                else {
-                    echo "<tr><th><h4 class='message'><span class='recipient'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
-                }
-            }
-            ?>
 
-            <!-- INBOX / OUTBOX -->
-            <iframe src="messages_inbox_outbox.php" style="height:20%;width:300px" title="Iframe Example"></iframe>
+            <!-- BEGIN TABLE -->
+            <table width="25%" cellpadding="0.5" cellspacing="0.5">
+            
+            <tr>
+                <!-- LEFT COLUMN: MESSAGES -->
+                <!-- loop through every row of results and print user and their message -->
+                <td>
+                    <iframe src="messages_inbox_outbox.php" style="height:500px;width:500px" title="Iframe Example"></iframe>
+                </td>
+
+                <!-- RIGHT COLUMN: IN/OUTBOX -->
+                <td>
+                    <?php 
+                    while($result_r = mysqli_fetch_row($result)){
+                        $the_sender = $result_r[0];     
+                        $the_message = $result_r[1];
+                        if ($the_sender == $sender) {
+                            echo "<tr><th><h4 class='message'><span class='sender'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                        }
+                        else {
+                            echo "<tr><th><h4 class='message'><span class='recipient'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                        }
+                    }
+                    ?>
+                </td>
+                
+            </tr>
 
             </table>
 
