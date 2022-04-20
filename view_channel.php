@@ -65,7 +65,7 @@
     function add_friend(&$uid, &$uidf) {
 		if($_SESSION['username'] != NULL) {
 			$query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		} else {
 			$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
 
@@ -77,7 +77,7 @@
 	function subscribe(&$uid, &$uidf) {
 		if($_SESSION['username'] != NULL) {
 			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
 		//  else {
 		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";

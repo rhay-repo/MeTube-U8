@@ -12,12 +12,12 @@
         // echo $uid ."\n";
         // echo $uidf ."\n";
         $query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function remove_friend(&$uid, &$uidf) {
         $query = "DELETE FROM contact_list WHERE username='{$uid}' AND contact='{$uidf}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
 ?>
@@ -49,7 +49,7 @@
                 // query the database or produce error message 
                 // add name, id number
                 $data_query = "SELECT contact FROM contact_list WHERE username='{$_SESSION['username']}'";
-                $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
+                $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 
             ?>
 

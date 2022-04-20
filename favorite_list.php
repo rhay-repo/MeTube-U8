@@ -15,17 +15,17 @@
 
     function favorite(&$uid, &$file) {
 			$query = "INSERT INTO favorite_list VALUE ('{$uid}', '{$file}', curdate())";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 	}
 
     function remove_favorite(&$uid, &$file) {
         $query = "DELETE FROM favorite_list WHERE username='{$uid}' AND filepath='{$file}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function check_favorite(&$uid, &$file) {
         $query = "SELECT * FROM favorite_list WHERE username = '{$uid}' AND filepath = '{$file}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error : ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error : ". mysqli_error($_SESSION['link'])."\n");
 
         if($result->num_rows == 0) {
             return false;
@@ -64,7 +64,7 @@
                         <a> <?php echo $time;?> </a>
                     </td>
                     <td>
-                        <a href="#"> <?php echo $media_name;?> </a>
+                        <a> <?php echo $media_name;?> </a>
                     </td>
                     <td>
                     <form method="post">

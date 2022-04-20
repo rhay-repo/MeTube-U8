@@ -11,7 +11,7 @@
 
     function delete_playlist(&$playlist) {
         $query = "DELETE FROM playlist WHERE username='{$_SESSION['username']}' AND playlist_title='{$playlist}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function gotoPlaylist(&$playlist) {
