@@ -88,7 +88,7 @@ form.example::after {
                     <th>Title</th>
                     <th>Keywords</th>
                     <th>Date Published</th>
-                    <th>Favorite Media</th>
+                    <th>View Media</th>
                 </tr>
                 <?php
                     $count = 0;
