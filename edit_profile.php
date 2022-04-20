@@ -6,10 +6,6 @@
     // gather session variables
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
-
-    // refresh the page to update session vars
-    // header("Location: edit_profile.php");
-	
 ?>
 
 <!DOCTYPE html>
@@ -56,8 +52,6 @@
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
                 // replace the session email with the new email
                 $_SESSION['email'] = $new_email;
-                // refresh the page
-                // header("Refresh:10");
             }
 
             // if the user updates their 
@@ -68,15 +62,6 @@
                 $query = "UPDATE users SET password='{$new_password}' WHERE username='{$username}' AND email='{$email}'";
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
             }
-
-            // refresh the page to update session vars
-            // header("Location: edit_profile.php");
-            // $cnt = 0;
-            // if ($cnt < 1) {
-            //     header("Refresh:3");
-            //     $cnt++;
-            //     echo $cnt;
-            // }
 
         ?>
     </body>

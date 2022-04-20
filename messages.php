@@ -12,14 +12,16 @@
 <!DOCTYPE html>
 <html>
 <style>
-textarea {
-    resize: none;
-}
+textarea { resize: none; }
+.message { text-align: left; font-size: 20px; }
+.sender { color: blue }
+.recipient { color: red }
+.text { color: white }
 </style>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> User List </title>
-        <link rel="stylesheet" type="text/css" href="general-style.css">
+        <title> Messages </title>
+        <link rel="stylesheet" type="text/css" href="homepage-style.css">
         <body>
             <h1> Messages </h1>
             <h1> Message people on MeTube! </h1>
@@ -37,55 +39,36 @@ textarea {
                     $sender = $_SESSION['username'];
                     $recipient = $_POST['recipient_username'];
                     $message_text = $_POST['message_text'];
-                    // send_message($_SESSION['username'], $_POST['recipient_username'], $_POST['message_text']);
-                    // $query = "INSERT INTO direct_messages VALUES ('{$_SESSION['username']}', '{$_POST['recipient_username']}', '{$_POST['message_text']}', NOW())";
                     $query = "INSERT INTO direct_messages VALUES ('{$sender}', '{$recipient}', '{$message_text}', NOW())";
                     $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
                 }
 
-                
-
-                echo 
-                '<table class="table center" id="messages" width="85%" cellpadding="1" cellspacing="1">
-                    <tr>
-                        <th>Title</th>
-                        <th>Keywords</th>
-                        <th>Date Published</th>
-                        <th>Favorite Media</th>
-                    </tr>';
-                        
-                    if ($result->num_rows > 0) {
-                        while($result_r = mysqli_fetch_row($result)){
-                            $title = $result_r[3];     
-                            $keywords = $result_r[8]; 
-                            $date_published = $result_r[6]; 
-                        
-                    
-                        echo '<tr valign="top">
-                            <td>
-                                <a>' .$title;
-                        echo '
-                                </td>
-                                <td>
-                                    <a>' .$keywords;
-                        echo '</a>
-                                </td>
-                                <td>
-                                    <a>' .$date_published;
-                        echo '</a>
-                                </td>
-                                <td>
-                                </td>
-                                </tr>';
-                        }
-        }
-
+                // query for users sending and receiving messages in the correct order
+                $query = "SELECT `sender`, `message_text` FROM `direct_messages` WHERE sender='{$sender}' AND recipient='{$recipient}' OR sender='{$recipient}' AND recipient='{$sender}' ORDER BY datetime";
+                $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
             ?>
 
-            
+            <table width="25%" cellpadding="0.5" cellspacing="0.5">
+            <!-- loop through every row of results and print user and their message -->
+            <?php 
+            while($result_r = mysqli_fetch_row($result)){
+                $the_sender = $result_r[0];     
+                $the_message = $result_r[1];
+                if ($the_sender == $sender) {
+                    echo "<tr><th><h4 class='message'><span class='sender'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                }
+                else {
+                    echo "<tr><th><h4 class='message'><span class='recipient'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                }
+            }
+            ?>
 
-            
+            <!-- INBOX / OUTBOX -->
+            <iframe src="messages_inbox_outbox.php" style="height:20%;width:300px" title="Iframe Example"></iframe>
+
+            </table>
+
         </body>
     </head>
 </html>
