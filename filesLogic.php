@@ -55,7 +55,7 @@ if(isset($_GET['filepath'])) {
     $id = $_GET['filepath'];
 
     $sql = "SELECT * FROM media WHERE filepath = '{$filepath}'";
-    $result = mysqli_query($_SESSION['link'], $sql) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+    $result = mysqli_query($_SESSION['link'], $sql) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
     $file = mysqli_fetch_assoc($result);
 
@@ -76,7 +76,7 @@ if(isset($_GET['filepath'])) {
         readfile('uploads/' . $file['filepath']);
 
         $download = "INSERT INTO download_media(username, filepath, time) VALUES ('{$_SESSION['username']}', '$filepath', curdate())";
-        $result_down = mysqli_query($_SESSION['link'], $download) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result_down = mysqli_query($_SESSION['link'], $download) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
         exit;
 
     }

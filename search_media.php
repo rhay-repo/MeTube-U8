@@ -1,5 +1,12 @@
 <?php
      require 'headers.php';
+
+     $media_array = array();
+
+    function toMedia(&$file) {
+      $_SESSION['media_id'] = $file;
+      header("Location: media.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,6 +91,7 @@ form.example::after {
                     <th>Favorite Media</th>
                 </tr>
                 <?php
+                    $count = 0;
                     while($result_r = mysqli_fetch_row($result)) {
                         $title = $result_r[0];
                         $key = $result_r[1];
@@ -91,7 +99,8 @@ form.example::after {
                 ?>
                 <tr valign="top">
                     <td>
-                        <a> <?php echo $title;?> </a>
+                        <?php $_SESSION['media_id'] = $title;?>
+                        <a href="media_red.php"> <?php echo $title;?> </a>
                     </td>
                     <td>
                         <a> <?php echo $key;?> </a>
@@ -100,13 +109,30 @@ form.example::after {
                         <a> <?php echo $date;?> </a>
                     </td>
                     <td>
-                        <form method="post">
-                          <button> Add Stuff Here Later </button>                           
+                        <form action="media_red.php" method="post" value="<? echo $title; ?>">
+                          <button> View Media </button>  
+                          <?php
+                            // echo "<input type='submit' name='{$title}' value='Go to {$title}'>";
+                            // array_push($media_array, array($title, $_SESSION['username'], $title));
+                          ?>                        
                         </form>                    
                     </td>
                 </tr>
                 <?php
+                  $count++;
                     }
+                ?>
+
+                <?php    
+                        $cnt = 0;
+                        // loop through the array of remove button names
+                        // for every button name
+                        foreach ($media_array as $key => $value_array) {
+                            if (isset($_POST[$value_array[0]]) && $cnt < 1) {
+                                toMedia($value_array[2]);
+                                $cnt++;
+                            }   
+                        }
                 ?>
   </table>
 </body>
@@ -120,3 +146,7 @@ form.example::after {
     </form>
 </body> -->
 </html>
+
+<?php
+  
+?>

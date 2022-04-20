@@ -33,6 +33,10 @@
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
 		}
 	}
+
+	// function toChannel() {
+	// 	header("Location: view_channel.php");
+	// }
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +79,11 @@
 			color: white;
 		} 
 
+		a {
+			text-align: center; 
+			color: white;
+		}
+
 	</style>
 	<title> Media </title>
 	<link rel="stylesheet" type="text/css" href="homepage-style.css">
@@ -84,10 +93,11 @@
 		<?php
 			// if(isset($_SESSION['media_id'])) {
 				// $media_id = $_SESSION['media_id'];
-				$_SESSION['media_id'] = 9;
+				// $_SESSION['media_id'] = 9;
 				$media_id = $_SESSION['media_id'];
+				echo "<h1>".$media_id."</h1>";
 
-				$query = "SELECT * FROM media WHERE id = '{$media_id}'";
+				$query = "SELECT * FROM media WHERE title = '{$media_id}'";
 				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
 
 				while($r = $result->fetch_assoc()) {
@@ -104,6 +114,8 @@
 					$cat = $r["category"];
 					$group = $r["viewing_groups"];
 					$desc = $r["description"];
+
+					$_SESSION['owner'] = $user;
 				}
 
 				// check if user is friend of media being viewed
@@ -133,8 +145,9 @@
 						// echo "<img src='media/me/goodvibes.jpg' width='460' height='345' >";
 
 						echo "<h3>Published by ".$user."!</h3>";
+						echo "<a href='channel_red.php'> Go to Channel </a>";
+						echo "<br><br>";
 						echo "<div class='btn-group' style='width:100%'>
-								<button style='width=25%'>Channel</button>
 								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
 								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
 								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
@@ -164,7 +177,7 @@
 						
 						echo "<br><form action='filesLogic.php' method='post'>
 							<button type='submit' name='download'>DOWNDLOAD</button>";
-							
+
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
 						echo "<h3> Description: ". $desc."</h3> <br><br>";
