@@ -19,14 +19,11 @@
         }
     </style>
     <title> Upload Media </title>
-    <!-- <link rel="stylesheet" type="text/css" href="homepage-style.css"> -->
     <body>
         <div>
           <form action="upload_media.php" method="post" enctype="multipart/form-data" >
             <h1>Upload File</h1>
-            <input type="file" name="myfile"> <br>
-            <!-- <button type="submit" name="save">upload</button> -->
-            
+            <input type="file" name="myfile"> <br>          
 
                 <br>
                 <br>
@@ -37,16 +34,6 @@
                 <br>
 
                 <br>
-
-                <!-- <label for="category">Category:</label><br>
-                <input type="checkbox" id="sports" name="sports" value="Sports">
-                <label for="sports"> SPORTS </label><br>
-                <input type="checkbox" id="entertainment" name="entertainment" value="Entertainment">
-                <label for="entertainment"> ENTERTAINMENT </label><br>
-                <input type="checkbox" id="food" name="food" value="Food">
-                <label for="food"> FOOD </label><br>
-                <input type="checkbox" id="home" name="home" value="Home">
-                <label for="home"> HOME </label><br> -->
 
                 <div class="form-group">
                 <label for="category">Category:</label>
@@ -71,14 +58,6 @@
                     <option value="Private">Private</option>
                 </select>
                 </div>
-
-                <!-- <label for="view_group">View Group:</label><br>
-                <input type="radio" id="public" name="view_group" value="Public">
-                <label for="Public">Public</label><br>
-                <input type="radio" id="private" name="view_group" value="Private">
-                <label for="Private">Private</label><br>
-                <input type="radio" id="friends" name="view_group" value="Friends">
-                <label for="Friends">Friends</label><br> -->
 
                 <br>
 
