@@ -67,6 +67,7 @@
                     while($result_r = mysqli_fetch_row($result)) {
                         $user = $result_r[0];
                         $email = $result_r[1];
+                        if ($user != $_SESSION['username']) {
                     
                 ?>
                 <tr valign="top">
@@ -107,8 +108,10 @@
                         </form>                    
                     </td>
                 </tr>
+
                 <?php
-                    }
+                        } // close if statement
+                    } // close while loop
                 ?>
 
 
@@ -124,6 +127,7 @@
                             // ... then add respective user.
                             add_friend($value_array[1], $value_array[2]);
                             $cnt++;
+                            echo "<meta http-equiv='refresh' content='0'>";
                         }   
                     }
 
@@ -136,6 +140,7 @@
                             // ... then remove respective user.
                             remove_friend($value_array[1], $value_array[2]);
                             $cnt++;
+                            echo "<meta http-equiv='refresh' content='0'>";
                         }   
                     }
 
