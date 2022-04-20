@@ -52,6 +52,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 
 // Download Media
 if(isset($_GET['filepath'])) {
+    $user = $_SESSION['username'];
+
     $id = $_GET['filepath'];
 
     $sql = "SELECT * FROM media WHERE filepath = '{$filepath}'";
