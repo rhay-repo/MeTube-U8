@@ -1,10 +1,10 @@
 <?php
     // include standard variables
-    require 'headers.php';
+    require 'headers_no_navbar.php';
 
     function print_inbox_message(&$uid, &$uidf) {
-        $query = "SELECT FROM contact_list VALUE ('{$uid}', '{$uidf}')";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $query = "SELECT recipient FROM contact_list where sender='{$uid}' and recipient='{$uidf}'";
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
 

@@ -112,7 +112,7 @@
                 // construct db query
                 // $insert_query = "IF (0<=2) PRINT \'email address is valid\';";
                 // $insert_query = "IF ({$email} RLIKE {$valid_email_regex}) { echo 'email is valid!' };";
-                $insert_query = "INSERT into users VALUES ('{$email}', '{$username}', '{$password}')";
+                $insert_query = "INSERT into users VALUES ('{$email}', '{$username}', '{$password}', 'Public')";
 
                 $result = mysqli_query($link, $insert_query) or die("Query error: ". mysqli_error($link)."\n");
 
