@@ -60,7 +60,8 @@
                 </tr>
                 <?php
                     while($result_r = mysqli_fetch_row($result)) {
-                        $user = $result_r[0];                    
+                        $user = $result_r[0];    
+                        if ($user != $_SESSION['username']) {                
                 ?>
                 <tr valign="top">
                     <td>
@@ -83,7 +84,8 @@
                     </td>
                 </tr>
                 <?php
-                    }
+                        } // close if statement
+                    } // close while loop
                 ?>
 
                 <?php    
@@ -96,6 +98,7 @@
                                 // ... then remove respective user.
                                 remove_friend($value_array[1], $value_array[2]);
                                 $cnt++;
+                                echo "<meta http-equiv='refresh' content='0'>";
                             }   
                         }
                 ?>

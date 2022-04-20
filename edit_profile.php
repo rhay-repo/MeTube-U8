@@ -72,13 +72,82 @@
 
         <?php 
 
-            // if the user updates their username...
+            // if the user updates their username IN EVERY TABLE
             if (isset($_POST['update_username_button'])) {
                 // assign the new username
                 $new_username = $_POST['new_username'];
-                // update the that user's username in the database
+
+
+                // ~~ EXECUTE SHELL COMMAND TO CHANGE THEIR FILEPATH ON THE WEBSERVER
+
+
+                // ~~ CHANGE ALL ENTRIES OF THE FILE PATH IN THE DATABASE TOO
+
+
+                // update the that user's username TABLE: users -> username
                 $query = "UPDATE users SET username='{$new_username}' WHERE username='{$username}'";
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // comments
+                // TABLE: comments -> reply_of
+                $query = "UPDATE comments SET reply_of='{$new_username}' WHERE reply_of='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+                // TABLE: comments -> username
+                $query = "UPDATE comments SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // contact_list
+                // TABLE: contact_list -> username
+                $query = "UPDATE contact_list SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+                // TABLE: contact_list -> contact
+                $query = "UPDATE contact_list SET contact='{$new_username}' WHERE contact='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // direct_messages
+                // TABLE: direct_messages -> sender
+                $query = "UPDATE direct_messages SET sender='{$new_username}' WHERE sender='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+                // TABLE: direct_messages -> recipient
+                $query = "UPDATE direct_messages SET recipient='{$new_username}' WHERE recipient='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // favorite_list
+                // TABLE: favorite_list -> username
+                $query = "UPDATE favorite_list SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // media
+                // TABLE: media -> username
+                $query = "UPDATE media SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // playlist
+                // TABLE: playlist -> username
+                $query = "UPDATE playlist SET username='{$new_username}' WHERE username='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+
+                // subscribe
+                // TABLE: subscribe -> user
+                $query = "UPDATE subscribe SET user='{$new_username}' WHERE user='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+                // TABLE: subscribe -> channel
+                $query = "UPDATE subscribe SET channel='{$new_username}' WHERE channel='{$username}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+                
+
+
                 // replace the session username with the new username
                 $_SESSION['username'] = $new_username;
             }
