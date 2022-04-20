@@ -224,30 +224,26 @@
             }
 		?>
 
-		<!-- <php
-				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
-				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
-				comments.filepath = media.filepath";
-				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
-			?> -->
 			<h3>Comments</h3>
 			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
                 <tr>
                     <th>User</th>
                     <th>Comment</th>
                     <th>Date & Time Posted</th>
+					<th>Reply to Comment</th>
                 </tr>
                 <?php
 
-					$data_query = "SELECT username, comment, datetime
-					FROM comments WHERE comments.filepath = '{$media_id}' ORDER BY datetime DESC";
+					$data_query = "SELECT username, comment, datetime, comment_id
+					FROM comments WHERE comments.filepath = '{$media_id}' ORDER BY comment_id DESC, datetime DESC";
 
 					$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
-					
+					$c_id;
 					while($result_r = mysqli_fetch_row($result)) {
 						$user = $result_r[0];
 						$comment = $result_r[1];
-						$date_time = $result_r[2]; 
+						$date_time = $result_r[2];
+						$c_id = $result_r[3]; 
 						?>
 						<tr valign="top">
 							<td>
@@ -258,6 +254,13 @@
 							</td>
 							<td>
 								<a> <?php echo $date_time;?> </a>
+							</td>
+							<td>
+							<form action="reply_comment.php" method="post">
+								<input type="text" name="reply" size = "50">
+								<input type="hidden" name="id" value='<?php echo "$c_id";?>'> 
+								<input type="submit" name="post" value="Reply">
+							</form>                    
 							</td>
 						</tr>
 						<?php
