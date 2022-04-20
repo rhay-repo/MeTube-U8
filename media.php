@@ -95,7 +95,7 @@
 				// $media_id = $_SESSION['media_id'];
 				// $_SESSION['media_id'] = 9;
 				$media_id = $_SESSION['media_id'];
-				echo "<h1>".$media_id."</h1>";
+				// echo "<h1>".$media_id."</h1>";
 
 				$query = "SELECT * FROM media WHERE title = '{$media_id}'";
 				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
@@ -158,7 +158,7 @@
 						
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
-						echo "<h3> Description: ". $desc."</h3> <br><br>";
+						echo "<h3> Description: ". $desc."</h3> <br><br></form>";
 					// Would like to change this to contacts only
 					} else if($view_private) {
 						echo "<h1> Your have private permissions! </h1>";
@@ -180,7 +180,7 @@
 
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
-						echo "<h3> Description: ". $desc."</h3> <br><br>";
+						echo "<h3> Description: ". $desc."</h3> <br><br></form>";
 					} else {
 						echo "<h1> This file is private! </h1>";
 						echo "<h1> You do not have permission to view this media! </h1>";
@@ -194,12 +194,69 @@
 									<a class='btn' href='upload_media.php'> Upload Media </a>
 								</div>
 							</div>";
-				}
-
-
-
-			// }
+				}	
 		?>
+		<!-- <php
+				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
+				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
+				comments.filepath = media.filepath";
+				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
+			?> -->
+			<h3>Comments</h3>
+			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th>User</th>
+                    <th>Comment</th>
+                    <th>Date & Time Posted</th>
+                </tr>
+                <?php
+					$data_query = "SELECT comments.username, comments.comment, comments.datetime
+					FROM comments INNER JOIN media ON comments.filepath = $id WHERE 
+					comments.filepath = $id";
+					$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
+					
+					if ($result->num_rows > 0) {
+						while($result_r = mysqli_fetch_row($result)) {
+							$user = $result_r[0];
+							$comment = $result_r[1];
+							$date_time = $result_r[2]; 
+							?>
+							<tr valign="top">
+								<td>
+									<a> <?php echo $user;?> </a>
+								</td>
+								<td>
+									<a> <?php echo $result_r[2];?> </a>
+								</td>
+								<td>
+									<a> <?php echo $date_time;?> </a>
+								</td>
+							</tr>
+							<?php
+						}
+					}
+                ?>
+  			</table>
+
+				<!-- <form action="comment_action.php" method="post">
+					<br>
+					<h3>Add Comment:</h3>
+					
+					<div class="form-group">
+                    	<textarea class="form-control" rows="7" style="width:500px" id="description" name="description"></textarea>
+               		</div>
+
+              		<button type="submit" name="post_comment">Post Comment</button>
+				</form> -->
+
+				<form action="comment_action.php" method="post">
+					<h3>Add Comment</h3>
+					<input type="text" name="comment" size = "100">
+				
+					<input type="submit" name="post" value="Post Comment">
+				</form>
+				<br><br>
+
 		</div>
 	</body>
 </html>
