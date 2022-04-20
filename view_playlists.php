@@ -13,11 +13,6 @@
         $query = "DELETE FROM playlist WHERE username='{$_SESSION['username']}' AND filepath='{$media}'";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
-
-    function gotoMedia(&$media) {
-        $_SESSION['media_id'] = $media;
-        header("Location: media.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -83,10 +78,10 @@
                         <a> <?php echo $file_title;?> </a>
                     </td>
                     <td>
-                    <form method="post">
+                    <form action="media.php" method="post">
                         <?php $view_media = "view_" . $file_title;?>
+                        <?php $_SESSION['media_id'] = $file_title; ?>
                         <input type='submit' name=<?php echo $view_media; ?> value='View'>
-                        <?php array_push($view_media_array, array($view_media, $_SESSION['username'], $file_title)); ?>
                     </form>                                     
                     </td>
                     <td>
@@ -126,19 +121,6 @@
                             $cnt++;
                         }   
                     }
-
-                    $cnt = 0;
-                    // loop through the array of add button names
-                    // for every button name ... 
-                    foreach ($view_media_array as $key => $value_array) {
-                        // ... check if button has been clicked ...
-                        if (isset($_POST[$value_array[0]]) && $cnt < 1) {
-                            // ... then add respective user.
-                            gotoMedia($value_array[2]);
-                            $cnt++;
-                        }   
-                    }
-
                 ?>
             </table>
         </body>
