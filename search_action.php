@@ -91,7 +91,6 @@
                     <th>Title</th>
                     <th>Keywords</th>
                     <th>Date Published</th>
-                    <th>Favorite Media</th>
                 </tr>';
                     
                 if ($result->num_rows > 0) {
@@ -99,11 +98,10 @@
                         $title = $result_r[3];     
                         $keywords = $result_r[8]; 
                         $date_published = $result_r[6]; 
-                    
-                
-                    echo '<tr valign="top">
-                        <td>
-                            <a>' .$title;
+                        $_SESSION['media_id'] = $title;
+                    echo '   
+                        <tr valign="top">
+                        <td> <a href="media_red.php">' . $title . '</a>';
                     echo '
                             </td>
                             <td>
@@ -114,8 +112,7 @@
                                 <a>' .$date_published;
                     echo '</a>
                             </td>
-                            <td>
-                            </td>
+                            
                             </tr>';
                     }
                     
