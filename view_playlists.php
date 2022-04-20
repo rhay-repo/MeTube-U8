@@ -22,17 +22,39 @@
 
 <!DOCTYPE html>
 <html>
+    <style>
+        p {
+			text-align: center; 
+			color: white;
+		}
+        form {
+            margin: auto; 
+            width: 220px;
+        }
+    </style>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> View Playlists </title>
         <link rel="stylesheet" type="text/css" href="homepage-style.css">
         <body>
             <?php 
-                $_SESSION['playlist'] = 'my first playlist!';
+                $_SESSION['playlist'] = 'update';
                 // $playlist = $_SESSION['playlist'];
             ?>
 
             <h1> <?php echo $_SESSION['playlist']; ?> Playlist </h1>
+
+            <br>
+
+            <form method="POST">
+                <?php echo "<p>Change Playlist Name: </p>"; ?>
+                <input type="text" name="new_name" placeholder="New Playlist Name">
+                <input type="submit" name="update_name_button" value="Save Changes">
+            </form>
+
+            <br>
+
+           
 
             <?php
                 $query = "SELECT * FROM playlist WHERE username = '{$_SESSION['username']}' AND playlist_title = '{$_SESSION['playlist']}'";
@@ -79,6 +101,18 @@
                     }
                 ?>
 
+
+            <?php 
+                if (isset($_POST['update_name_button'])) {
+                    // assign the new username
+                    $new_name = $_POST['new_name'];
+                    // update the that user's username in the database
+                    $query = "UPDATE playlist SET playlist_title='{$new_name}' WHERE username='{$_SESSION['username']}'";
+                    $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+                    // replace the session username with the new username
+                    $_SESSION['playlist'] = $new_name;
+                }
+            ?>
                 <?php
 
                     $cnt = 0;
