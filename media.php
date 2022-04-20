@@ -230,6 +230,7 @@
 				comments.filepath = media.filepath";
 				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 			?> -->
+		<?php if($view_private or $group == 'Public') { ?>
 			<h3>Comments</h3>
 			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
                 <tr>
@@ -272,7 +273,7 @@
 					<input type="submit" name="post" value="Post Comment">
 				</form>
 				<br><br>
-
+		<?php } ?>
 		</div>
 	</body>
 </html>
