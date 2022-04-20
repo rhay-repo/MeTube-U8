@@ -210,48 +210,36 @@
                     <th>Date & Time Posted</th>
                 </tr>
                 <?php
-					$data_query = "SELECT comments.username, comments.comment, comments.datetime
-					FROM comments INNER JOIN media ON comments.filepath = $id WHERE 
-					comments.filepath = $id";
+
+					$data_query = "SELECT username, comment, datetime
+					FROM comments WHERE comments.filepath = '{$media_id}' ORDER BY datetime DESC";
+
 					$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 					
-					if ($result->num_rows > 0) {
-						while($result_r = mysqli_fetch_row($result)) {
-							$user = $result_r[0];
-							$comment = $result_r[1];
-							$date_time = $result_r[2]; 
-							?>
-							<tr valign="top">
-								<td>
-									<a> <?php echo $user;?> </a>
-								</td>
-								<td>
-									<a> <?php echo $result_r[2];?> </a>
-								</td>
-								<td>
-									<a> <?php echo $date_time;?> </a>
-								</td>
-							</tr>
-							<?php
-						}
+					while($result_r = mysqli_fetch_row($result)) {
+						$user = $result_r[0];
+						$comment = $result_r[1];
+						$date_time = $result_r[2]; 
+						?>
+						<tr valign="top">
+							<td>
+								<a> <?php echo $user;?> </a>
+							</td>
+							<td>
+								<a> <?php echo $comment;?> </a>
+							</td>
+							<td>
+								<a> <?php echo $date_time;?> </a>
+							</td>
+						</tr>
+						<?php
 					}
-                ?>
+                		?>
   			</table>
-
-				<!-- <form action="comment_action.php" method="post">
-					<br>
-					<h3>Add Comment:</h3>
-					
-					<div class="form-group">
-                    	<textarea class="form-control" rows="7" style="width:500px" id="description" name="description"></textarea>
-               		</div>
-
-              		<button type="submit" name="post_comment">Post Comment</button>
-				</form> -->
 
 				<form action="comment_action.php" method="post">
 					<h3>Add Comment</h3>
-					<input type="text" name="comment" size = "100">
+					<input type="text" name="comment" size = "50">
 				
 					<input type="submit" name="post" value="Post Comment">
 				</form>
