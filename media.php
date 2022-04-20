@@ -230,7 +230,8 @@
 				comments.filepath = media.filepath";
 				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 			?> -->
-		<?php if($view_private or $group == 'Public') { ?>
+		<?php if($view_private or $group == 'Public') {?>
+			
 			<h3>Comments</h3>
 			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
                 <tr>
@@ -262,19 +263,24 @@
 							<td>
 								<a> <?php echo $date_time;?> </a>
 							</td>
-							<td>
-							<form action="reply_comment.php" method="post">
+							
+							<?php if($_SESSION['username'] != NULL) {  ?>
+								<td>
+								<form action="reply_comment.php" method="post">
 								<input type="text" name="reply" size = "50">
 								<input type="hidden" name="id" value='<?php echo "$c_id";?>'> 
 								<input type="submit" name="post" value="Reply">
 							</form>                    
 							</td>
+							<?php } else { echo ' Must be signed in to reply to comments'; } ?>
+							 </td>
 						</tr>
 						<?php
 					}
                 		?>
   			</table>
-
+				
+			  <?php if($_SESSION['username'] != NULL) {  ?>
 				<form action="comment_action.php" method="post">
 					<h3>Add Comment</h3>
 					<input type="text" name="comment" size = "50">
@@ -282,6 +288,7 @@
 					<input type="submit" name="post" value="Post Comment">
 				</form>
 				<br><br>
+				<?php } else {?> <br><br> <?php echo '<h3>Must be signed in to post comments</h3>'; } ?>
 		<?php } ?>
 		</div>
 	</body>
