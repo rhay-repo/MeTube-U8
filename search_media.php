@@ -80,7 +80,7 @@ form.example::after {
 <br>
 <?php
   $data_query = "SELECT title, keywords, date_published FROM media";
-  $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
+  $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 ?>
 
 <table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">

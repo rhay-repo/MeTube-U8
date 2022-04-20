@@ -11,7 +11,7 @@
 
     function delete_channel(&$channel) {
         $query = "DELETE FROM subscribe WHERE user='{$_SESSION['username']}' AND channel='{$channel}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function gotoChannel(&$channel) {

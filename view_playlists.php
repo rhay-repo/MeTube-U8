@@ -11,7 +11,7 @@
 
     function delete_media(&$media) {
         $query = "DELETE FROM playlist WHERE username='{$_SESSION['username']}' AND filepath='{$media}'";
-        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+        $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
 
     function gotoMedia(&$media) {

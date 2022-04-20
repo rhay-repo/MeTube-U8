@@ -78,7 +78,7 @@
             $sql = "SELECT * FROM media WHERE title LIKE '%$val%' OR keywords LIKE '%$val%' OR category LIKE '$val'";
         
            // $result = $con->query($sql);
-            $result = mysqli_query($link, $sql) or die("Query error: ". mysqli_error($link)."\n");;
+            $result = mysqli_query($link, $sql) or die("Query error: ". mysqli_error($link)."\n");
 
         }
     ?>

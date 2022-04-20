@@ -5,7 +5,7 @@
 	function add_friend(&$uid, &$uidf) {
 		if($_SESSION['username'] != NULL) {
 			$query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		} else {
 			$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
 
@@ -17,7 +17,7 @@
 	function subscribe(&$uid, &$uidf) {
 		if($_SESSION['username'] != NULL) {
 			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
 		//  else {
 		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
@@ -30,7 +30,7 @@
 	function favorite(&$user, &$file) {
 		if($_SESSION['username'] != NULL) {
 			$query = "INSERT INTO favorite_list VALUE ('{$user}', '{$file}', curdate())";
-			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
 	}
 
@@ -98,7 +98,7 @@
 				// echo "<h1>".$media_id."</h1>";
 
 				$query = "SELECT * FROM media WHERE title = '{$media_id}'";
-				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
 				while($r = $result->fetch_assoc()) {
 					$id = $r["id"];
@@ -120,7 +120,7 @@
 
 				// check if user is friend of media being viewed
 				$friend_query = "SELECT contact FROM contact_list WHERE username='{$user}'";
-				$friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");;
+				$friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
 				$view_private = false;
 
@@ -224,6 +224,13 @@
             }
 		?>
 
+		<!-- <php
+				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
+				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
+				comments.filepath = media.filepath";
+				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
+			?> -->
+		<?php if($view_private or $group == 'Public') { ?>
 			<h3>Comments</h3>
 			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
                 <tr>
@@ -275,7 +282,7 @@
 					<input type="submit" name="post" value="Post Comment">
 				</form>
 				<br><br>
-
+		<?php } ?>
 		</div>
 	</body>
 </html>

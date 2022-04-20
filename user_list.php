@@ -53,7 +53,7 @@
                 // query the database or produce error message 
                 // add name, id number
                 $data_query = "SELECT username, email from users";
-                $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");;
+                $result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 
             ?>
 

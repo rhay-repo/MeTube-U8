@@ -30,7 +30,7 @@
     // add friend
     // function add_friend(&$uid, &$uidf) {
     //     $query = "INSERT INTO contact_list VALUE ($uid, $uidf)";
-    //     $result = mysqli_query($link, $query) or die("Query error: ". mysquli_error($link)."\n");;
+    //     $result = mysqli_query($link, $query) or die("Query error: ". mysquli_error($link)."\n");
     // }
     // function add_friend($friend) {
     //     if($_SESSION['loggedin'] != $friend && user_login_check()) {
