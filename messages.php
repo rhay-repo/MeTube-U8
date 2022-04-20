@@ -41,12 +41,12 @@ textarea { resize: none; }
                     $message_text = $_POST['message_text'];
                     $query = "INSERT INTO direct_messages VALUES ('{$sender}', '{$recipient}', '{$message_text}', NOW())";
                     $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
+                
+
+                    // query for users sending and receiving messages in the correct order
+                    $query = "SELECT `sender`, `message_text` FROM `direct_messages` WHERE sender='{$sender}' AND recipient='{$recipient}' OR sender='{$recipient}' AND recipient='{$sender}' ORDER BY datetime";
+                    $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
                 }
-
-                // query for users sending and receiving messages in the correct order
-                $query = "SELECT `sender`, `message_text` FROM `direct_messages` WHERE sender='{$sender}' AND recipient='{$recipient}' OR sender='{$recipient}' AND recipient='{$sender}' ORDER BY datetime";
-                $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
-
             ?>
 
 
@@ -54,28 +54,31 @@ textarea { resize: none; }
             <table width="25%" cellpadding="0.5" cellspacing="0.5">
             
             <tr>
-                <!-- LEFT COLUMN: MESSAGES -->
+                <!-- RIGHT COLUMN: IN/OUTBOX -->
                 <!-- loop through every row of results and print user and their message -->
                 <td>
                     <iframe src="messages_inbox_outbox.php" style="height:500px;width:500px" title="Iframe Example"></iframe>
                 </td>
 
-                <!-- RIGHT COLUMN: IN/OUTBOX -->
+                <!-- LEFT COLUMN: MESSAGES -->
                 <td>
                     <?php 
-                    while($result_r = mysqli_fetch_row($result)){
-                        $the_sender = $result_r[0];     
-                        $the_message = $result_r[1];
-                        if ($the_sender == $sender) {
-                            echo "<tr><th><h4 class='message'><span class='sender'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
-                        }
-                        else {
-                            echo "<tr><th><h4 class='message'><span class='recipient'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                    if (isset($_POST['send_message_button'])) {
+                        while($result_r = mysqli_fetch_row($result)){
+                            $the_sender = $result_r[0];     
+                            $the_message = $result_r[1];
+                            if ($the_sender == $sender) {
+                                echo "<tr><th><h4 class='message'><span class='sender'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                                // echo "<input = submit "
+                            }
+                            else {
+                                echo "<tr><th><h4 class='message'><span class='recipient'>{$the_sender}:</span> {$the_message}</h4></th></tr>";
+                            }
                         }
                     }
                     ?>
                 </td>
-                
+
             </tr>
 
             </table>
