@@ -148,9 +148,9 @@
 						echo "<a href='channel_red.php'> Go to Channel </a>";
 						echo "<br><br>";
 						echo "<div class='btn-group' style='width:100%'>
-								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
-								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
-								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
+								<button style='width=33.3%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
+								<button style='width=33.3%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
+								<button style='width=33.3%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 
 						echo "<br><form action='filesLogic.php' method='post'>
@@ -168,11 +168,12 @@
 						// echo "<img src='media/me/goodvibes.jpg' width='460' height='345' >";
 
 						echo "<h3>Published by ".$user."!</h3>";
+						echo "<a href='channel_red.php'> Go to Channel </a>";
+						echo "<br><br>";
 						echo "<div class='btn-group' style='width:100%'>
-								<button style='width=25%'>Channel</button>
-								<button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
-								<button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
-								<button style='width=25%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
+								<button style='width=33.3%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
+								<button style='width=33.3%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
+								<button style='width=33.3%' onClick=".favorite($_SESSION['username'], $filepath).">Favorite</button>
 							</div>";
 						
 						echo "<br><form action='filesLogic.php' method='post'>
