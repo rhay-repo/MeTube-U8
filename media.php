@@ -154,7 +154,14 @@
 							</div>";
 
 						echo "<br><form action='filesLogic.php' method='post'>
-								<button type='submit' name='download'>DOWNDLOAD</button>";
+								<button type='submit' name='download'>DOWNLOAD</button>
+								</form>";
+
+						echo "<br> <form method='POST'>
+								<a> Add to Playlist </a><br>
+								<input type='text' name='playlist' placeholder='Enter Playlist Name'>
+								<input type='submit' name='add_to_playlist' value='Add to Playlist'>
+							</form>";
 						
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
@@ -177,7 +184,14 @@
 							</div>";
 						
 						echo "<br><form action='filesLogic.php' method='post'>
-							<button type='submit' name='download'>DOWNDLOAD</button>";
+							<button type='submit' name='download'>DOWNDLOAD</button>
+							</form>";
+
+						echo "<br> <form method='POST'>
+								<a> Add to Playlist </a><br>
+								<input type='text' name='playlist' placeholder='Enter Playlist Name'>
+								<input type='submit' name='add_to_playlist' value='Add to Playlist'>
+							</form>";
 
 						echo "<br> <h3> Category: ". $cat."</h3> <br>";
 						echo "<h3> Keywords: ". $keys."</h3> <br>";
@@ -197,6 +211,19 @@
 							</div>";
 				}	
 		?>
+
+		<?php
+			if (isset($_POST['add_to_playlist'])) {
+                // assign the new username
+                $new_playlist = $_POST['playlist'];
+                // update the that user's username in the database
+                $query = "INSERT INTO playlist(filepath, username, playlist_title, time) VALUES ('{$title}', '{$_SESSION['username']}', '{$new_playlist}', NOW())";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+				echo "<br><a> Added to ".$new_playlist." Playlist!</a>";
+            }
+		?>
+
 		<!-- <php
 				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
 				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
