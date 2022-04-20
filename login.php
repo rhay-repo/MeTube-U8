@@ -106,7 +106,7 @@
 
                 //~THIS ISN'T WORKING
                 // header('Location: http://webapp.computing.clemson.edu/~rjhay/MeTube/homepage.html');
-                header('Location: user_homepage.php');
+                header('Location: view_profile.php');
             }
 
         }
