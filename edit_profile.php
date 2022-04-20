@@ -6,6 +6,17 @@
     // gather session variables
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
+
+    $query = "SELECT viewing FROM users WHERE username='{$username}'";
+    $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+
+    while($r = $result->fetch_row()) {
+        $viewing = $r[0];
+    }
+
+    // refresh the page to update session vars
+    // header("Location: edit_profile.php");
+	
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +40,21 @@
             <input type="password" name="new_password" placeholder="New Password">
             <input type="submit" name="update_password_button" value="Save Changes">
         </form>
+
+        <form method="POST">
+            <?php echo "<p>Viewing: ".$viewing." </p>"; ?>
+            <input type="text" name="new_view" placeholder="Public or Private">
+            <input type="submit" name="update_view_button" value="Save Changes">
+        </form>
+        <!-- <br>
+        <div class="form-group">
+                <label for="view">Profile Viewing:</label>
+                <select class="form-control" name="new_view" id="view">
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                </select>
+        </div>
+        <button type="submit" name="update_view_button">Save Changes</button> -->
 
         <?php 
 
@@ -57,12 +83,32 @@
             // if the user updates their 
             elseif (isset($_POST['update_password_button'])) {
                 // assign the new password
-                $new_email = $_POST['new_password'];
+                $new_password = $_POST['new_password'];
                 // update the that user's password in the database
                 $query = "UPDATE users SET password='{$new_password}' WHERE username='{$username}' AND email='{$email}'";
                 $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
             }
 
+<<<<<<< HEAD
+=======
+            elseif (isset($_POST['update_view_button'])) {
+                // assign the new password
+                $new_view = $_POST['new_view'];
+                // update the that user's password in the database
+                $query = "UPDATE users SET viewing='{$new_view}' WHERE username='{$username}' AND email='{$email}'";
+                $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+            }
+
+            // refresh the page to update session vars
+            // header("Location: edit_profile.php");
+            // $cnt = 0;
+            // if ($cnt < 1) {
+            //     header("Refresh:3");
+            //     $cnt++;
+            //     echo $cnt;
+            // }
+
+>>>>>>> 67df0c0fbc5c47befdffb7bf38c933ca1490790d
         ?>
     </body>
 </head>
