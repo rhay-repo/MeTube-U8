@@ -52,13 +52,14 @@
     require 'headers.php';
     include 'db_connection_test.php';
     
-    $id=$_SESSION['username'];
-    $user_email=$_SESSION['email'];
-    $query=mysqli_query($con,"SELECT viewing FROM users where username='$id'")or die(mysqli_error());
+    $id=$_SESSION['owner'];
+    // $user_email=$_SESSION['email'];
+    $query=mysqli_query($con,"SELECT viewing, email FROM users where username='$id'")or die(mysqli_error());
     //$row=mysqli_fetch_array($query);
 
     while($r = $query->fetch_row()) {
         $viewing = $r[0];
+        $user_email = $r[1];
     }
 
     function add_friend(&$uid, &$uidf) {
@@ -90,8 +91,8 @@
         echo ' <br><h1>'.$id.' Profile </h1>';
 
         echo "<div class='btn-group' style='width:100%'>
-                <button style='width=25%' onClick=".subscribe($_SESSION['username'], $user).">Subscribe</button>
-                <button style='width=25%' onClick=".add_friend($_SESSION['username'], $user).">Add Friend</button>
+                <button style='width=25%' onClick=".subscribe($id, $_SESSION['username']).">Subscribe</button>
+                <button style='width=25%' onClick=".add_friend($id, $_SESSION['username']).">Add Friend</button>
             </div><br>";
 
         echo'  <table class="table center" id="contacts" width="50%" cellpadding="1" cellspacing="1">';
