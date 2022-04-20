@@ -95,6 +95,7 @@
                 <div class="dropdown-content">
                 <a href="register.php" target="blank"><i class="fa fa-user-plus"></i> Create Account</a>
                 <a href="login.php" target="blank"><i class="fa fa-sign-in"></i> Login</a>
+                <a href="search_media.php" target="blank"><i class="fa fa-search"></i> Search Media</a>
                 </div>
             </div> 
         </div>
