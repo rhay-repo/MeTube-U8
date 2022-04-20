@@ -7,12 +7,23 @@
 <!DOCTYPE html>
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="homepage-style.css">
+    <style>
+        label {
+			text-align: center; 
+			color: white;
+		}
+        form {
+            margin: auto; 
+            width: 220px;
+        }
+    </style>
     <title> Upload Media </title>
     <!-- <link rel="stylesheet" type="text/css" href="homepage-style.css"> -->
     <body>
         <div>
           <form action="upload_media.php" method="post" enctype="multipart/form-data" >
-            <h3>Upload File</h3>
+            <h1>Upload File</h1>
             <input type="file" name="myfile"> <br>
             <!-- <button type="submit" name="save">upload</button> -->
             
