@@ -8,13 +8,13 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $filename = $_FILES['myfile']['name'];
     $username = $_SESSION['username'];
 
-    if (!file_exists('../media/' . $username)) {
-        mkdir('../media/' . $username, 0777, true);
+    if (!file_exists('media/' . $username)) {
+        mkdir('media/' . $username, 0777, true);
     }
     
 
     // destination of the file on the server
-    $destination = '../media/' . $username . '/' . $filename;
+    $destination = 'media/' . $username . '/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);

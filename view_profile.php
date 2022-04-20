@@ -66,11 +66,10 @@
                 $keywords = $result_r[8]; 
                 $viewing_groups = $result_r[11]; 
                 $description = $result_r[12]; 
-
+                $_SESSION['media_id'] = $title;
                 echo '   
                     <tr valign="top">
-                    <td>
-                        <a>' .$title;
+                    <td> <a href="media_red.php">' . $title . '</a>';
             echo '
                     </td>
                     <td>

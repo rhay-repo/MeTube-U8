@@ -140,9 +140,9 @@
 				if($media_id != NULL) {
 					if($group == 'Public') {
 						echo "<h1>".$title."</h1>";
-
+						
 						echo "<img src='media/".$user."/".$filepath."' width='460' height='345'>";
-						// echo "<img src='media/me/goodvibes.jpg' width='460' height='345' >";
+						// echo "<img src='images/rjhay/goodvibes.jpg' width='460' height='345' >";
 
 						echo "<h3>Published by ".$user."!</h3>";
 						echo "<a href='channel_red.php'> Go to Channel </a>";
