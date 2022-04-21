@@ -114,7 +114,7 @@ form.example::after {
                           //  $_SESSION['media_id'] = $title; ?>
                           <?php
                             // echo "<input type='submit' name='{$title}' value='Go to {$title}'>";
-                            array_push($media_array, array($title, $_SESSION['username'], $title));
+                            array_push($media_array, array($title, $title));
                           ?> 
                           <input type='submit' name='<?php echo $view_title; ?>' value='View Media'>
                           <!-- <button> View Media </button>   -->
@@ -134,7 +134,7 @@ form.example::after {
                         foreach ($media_array as $key => $value_array) {
                             if (isset($_POST[$value_array[0]]) && $cnt < 1) {
                                 // toMedia($value_array[2]);
-                                $_SESSION['media_id'] = $value_array[2];
+                                $_SESSION['media_id'] = $value_array[1];
                                 $cnt++;
                                 header("Location: media.php");
 

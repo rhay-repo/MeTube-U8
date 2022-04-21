@@ -119,8 +119,8 @@
 				}
 
 				// check if user is friend of media being viewed
-				$friend_query = "SELECT contact FROM contact_list WHERE username='{$user}'";
-				$friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
+				// $friend_query = "SELECT contact FROM contact_list WHERE username='{$user}'";
+				// $friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
 				$view_private = false;
 
@@ -272,7 +272,7 @@
 								<input type="submit" name="post" value="Reply">
 							</form>                    
 							</td>
-							<?php } else { echo ' Must be signed in to reply to comments'; } ?>
+							<a><?php } else { ?> <td> <?php echo ' Must be signed in to reply to comments'; } ?></td></a>
 							 </td>
 						</tr>
 						<?php

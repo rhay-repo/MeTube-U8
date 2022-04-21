@@ -118,13 +118,13 @@
 
                 // redirect them to the home page
                 //~THIS ISN'T WORKING
-                header('Location: user_homepage.php');
+                header('Location: view_profile.php');
 
             }
 
         }
         
-mysqli_close($link);
+// mysqli_close($link);
 ?>
         <!-- end new stuff -->
 
