@@ -1,16 +1,9 @@
 <?php
-    // include standard variables
-   // session_start();
-    require 'headers.php';
     
-    // ~
-    // Connecting, selecting database
-    //$link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
+    require 'headers.php';
     $remove_friend_buttons_array = array();
 
     function add_friend(&$uid, &$uidf) {
-        // echo $uid ."\n";
-        // echo $uidf ."\n";
         $query = "INSERT INTO contact_list VALUE ('{$uid}', '{$uidf}')";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }

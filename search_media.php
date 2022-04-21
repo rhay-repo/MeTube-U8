@@ -5,7 +5,6 @@
 
     function toMedia(&$file) {
       $_SESSION['media_id'] = $file;
-      // header("Location: media.php");
     }
 ?>
 <!DOCTYPE html>
@@ -145,13 +144,7 @@ form.example::after {
 </body>
 </html> 
 
-<!-- <body>
-    <br>
-    <form action="search3.php" method="post">
-        Search <input type="text" name="search"><br>
-        <input type ="submit">
-    </form>
-</body> -->
+
 </html>
 
 <?php

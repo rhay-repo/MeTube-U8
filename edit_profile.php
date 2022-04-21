@@ -60,15 +60,6 @@
             <input type="text" name="new_view" placeholder="Public or Private">
             <input type="submit" name="update_view_button" value="Save Changes">
         </form>
-        <!-- <br>
-        <div class="form-group">
-                <label for="view">Profile Viewing:</label>
-                <select class="form-control" name="new_view" id="view">
-                    <option value="Public">Public</option>
-                    <option value="Private">Private</option>
-                </select>
-        </div>
-        <button type="submit" name="update_view_button">Save Changes</button> -->
 
         <?php 
 
@@ -76,12 +67,6 @@
             if (isset($_POST['update_username_button'])) {
                 // assign the new username
                 $new_username = $_POST['new_username'];
-
-
-                // ~~ EXECUTE SHELL COMMAND TO CHANGE THEIR FILEPATH ON THE WEBSERVER
-
-
-                // ~~ CHANGE ALL ENTRIES OF THE FILE PATH IN THE DATABASE TOO
 
 
                 // update the that user's username TABLE: users -> username

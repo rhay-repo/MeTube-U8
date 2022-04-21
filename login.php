@@ -43,8 +43,6 @@
             $username = $_POST['username']; // gathered from name 'username'
             $password = $_POST['password']; // gathered from name 'password'
             
-            // ~ TODO: change every special character in $password from "x" to "\x"
-
 
             // query: find how mnay users have the name $username
             // $count_users_query = "SELECT COUNT(*) as cnt from users where username='{$username}'";
@@ -65,30 +63,15 @@
                 $err_counter++;
             }
 
-            // echo "number of users with the username $username = " . $count_users_result->num_rows . "<br>";
-
-            // $matching_password_query = "SELECT * from users WHERE username='{$username}' and password='{$password}'";
-            // $matching_password_result = mysqli_query($link, $matching_password_query) or die("Query error: ". mysqli_error($link)."\n");
 
             elseif ($matching_password_result->num_rows == 0) {
                 $error .= "<h3>incorrect password</h3><br>";
                 $err_counter++;
             }
 
-            //~
-            // echo "number of users with the credentials: $username/$password = " . $matching_password_result->num_rows . "<br>";
 
-
-            // // deny if any field is blank
-            // if ($username == '' or $password == '') {
-            //     $error .= "<h3>no field can be left blank!</h3><br>";
-            //     $err_counter++;
-            // }
-
-            //~
             if ($err_counter > 0) {
                 echo $error;
-                // echo "<h3>\$err_counter = " . $err_counter . "</h3>";
             }
 
             // otherwise, accept the login and add take the user to the home page
@@ -104,8 +87,6 @@
                 $email = $result_row[0];
                 $_SESSION['email'] = $email;
 
-                //~THIS ISN'T WORKING
-                // header('Location: http://webapp.computing.clemson.edu/~rjhay/MeTube/homepage.html');
                 header('Location: view_profile.php');
             }
 

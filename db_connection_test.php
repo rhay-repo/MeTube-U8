@@ -16,7 +16,4 @@ if ($result = mysqli_query($con, "SELECT *  FROM 'test'")) {
 	// Free result set
 	mysqli_free_result($result);
 }
-
-// Close the connection
-//mysqli_close($con);
 ?>

@@ -79,12 +79,6 @@
 			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
-		//  else {
-		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
-
-		// 	echo $_SESSION['error'];
-		// 	unset($_SESSION['error']);
-		// }
     }
 
     if($viewing == 'Public') {

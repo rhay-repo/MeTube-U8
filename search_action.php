@@ -115,14 +115,6 @@
                             
                             </tr>';
                     }
-                    
-                //     <form method="post">
-                //             <button type="submit" name="add" value=<?php $title >> Favorite </button>
-                //     </form>
-                //     </label>
-            
-                //     </td>
-                // </tr>';
         }
         else {
             echo "<h4> <font color=white> No results for '". $val ."'</h4>";

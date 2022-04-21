@@ -2,9 +2,6 @@
     // include standard variables
     require 'headers.php';
     
-    // ~
-    // Connecting, selecting database
-    // $link = mysqli_connect($hostname,$username,$pswd,$db_name) or die ('Could not connect (ERROR):' .mysqli_error($link));
 
     $view_playlist_array = array();
     $del_playlist_array = array();

@@ -19,12 +19,6 @@
 			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
-		//  else {
-		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
-
-		// 	echo $_SESSION['error'];
-		// 	unset($_SESSION['error']);
-		// }
     }
 
 	function favorite(&$user, &$file) {
@@ -33,10 +27,6 @@
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
 	}
-
-	// function toChannel() {
-	// 	header("Location: view_channel.php");
-	// }
 ?>
 
 <!DOCTYPE html>
@@ -91,11 +81,7 @@
 		<!-- <h1> View Media </h1> -->
 		<div class="content">
 		<?php
-			// if(isset($_SESSION['media_id'])) {
-				// $MEDIA_ID = $_SESSION['media_id'];
-				// $_SESSION['media_id'] = 9;
 				$MEDIA_ID = $_SESSION['media_id'];
-				// echo "<h1>".$MEDIA_ID."</h1>";
 
 				$query = "SELECT * FROM media WHERE title = '{$MEDIA_ID}'";
 				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
@@ -118,20 +104,8 @@
 					$_SESSION['owner'] = $user;
 				}
 
-				// check if user is friend of media being viewed
-				// $friend_query = "SELECT contact FROM contact_list WHERE username='{$user}'";
-				// $friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
-
+				
 				$view_private = false;
-
-				// doesn't work needs some help
-				// while($fr = $friend_result->fetch_assoc()) {
-				// 	$c = $fr['contact'];
-				// 	echo $c;
-				// 	if($c == $_SESSION['username']) {
-				// 		$view_private = true;
-				// 	}
-				// }
 
 				if($_SESSION['username'] == $user) {
 					$view_private = true;
@@ -224,12 +198,6 @@
             }
 		?>
 
-		<!-- <php
-				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
-				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
-				comments.filepath = media.filepath";
-				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
-			?> -->
 		<?php if($view_private or $group == 'Public') {?>
 			
 			<h3>Comments</h3>
