@@ -1,6 +1,6 @@
 <?php
 
-    include 'filesLogic.php'
+    include 'filesLogic.php';
 
 ?>
 
