@@ -92,12 +92,12 @@
 		<div class="content">
 		<?php
 			// if(isset($_SESSION['media_id'])) {
-				// $media_id = $_SESSION['media_id'];
+				// $MEDIA_ID = $_SESSION['media_id'];
 				// $_SESSION['media_id'] = 9;
-				$media_id = $_SESSION['media_id'];
-				// echo "<h1>".$media_id."</h1>";
+				$MEDIA_ID = $_SESSION['media_id'];
+				// echo "<h1>".$MEDIA_ID."</h1>";
 
-				$query = "SELECT * FROM media WHERE title = '{$media_id}'";
+				$query = "SELECT * FROM media WHERE title = '{$MEDIA_ID}'";
 				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
 				while($r = $result->fetch_assoc()) {
@@ -137,7 +137,7 @@
 					$view_private = true;
 				}
 
-				if($media_id != NULL) {
+				if($MEDIA_ID != NULL) {
 					if($group == 'Public') {
 						echo "<h1>".$title."</h1>";
 						
@@ -243,7 +243,7 @@
                 <?php
 
 					$data_query = "SELECT username, comment, datetime, comment_id
-					FROM comments WHERE comments.filepath = '{$media_id}' ORDER BY comment_id DESC, datetime DESC";
+					FROM comments WHERE comments.filepath = '{$MEDIA_ID}' ORDER BY comment_id DESC, datetime DESC";
 
 					$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 					$c_id;

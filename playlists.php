@@ -13,11 +13,6 @@
         $query = "DELETE FROM playlist WHERE username='{$_SESSION['username']}' AND playlist_title='{$playlist}'";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
-
-    function gotoPlaylist(&$playlist) {
-        $_SESSION['playlist'] = $playlist;
-        header("Location: view_playlists.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -56,10 +51,10 @@
                         <a> <?php echo $playlist;?> </a>
                     </td>
                     <td>
-                    <form method="post">
+                    <form action="view_playlists.php" method="post">
                         <?php $view_playlist = "view_" . $playlist;?>
+                        <?php $_SESSION['playlist'] = $playlist; ?>
                         <input type='submit' name=<?php echo $view_playlist; ?> value='View'>
-                        <?php array_push($view_playlist_array, array($view_playlist, $_SESSION['username'], $playlist)); ?>
                     </form>                                     
                     </td>
                     <td>
@@ -87,19 +82,6 @@
                             $cnt++;
                         }   
                     }
-
-                    $cnt = 0;
-                    // loop through the array of add button names
-                    // for every button name ... 
-                    foreach ($view_playlist_array as $key => $value_array) {
-                        // ... check if button has been clicked ...
-                        if (isset($_POST[$value_array[0]]) && $cnt < 1) {
-                            // ... then add respective user.
-                            gotoPlaylist($value_array[2]);
-                            $cnt++;
-                        }   
-                    }
-
                 ?>
             </table>
         </body>

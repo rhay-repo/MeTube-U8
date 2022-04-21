@@ -5,7 +5,7 @@
 
     function toMedia(&$file) {
       $_SESSION['media_id'] = $file;
-      header("Location: media.php");
+      // header("Location: media.php");
     }
 ?>
 <!DOCTYPE html>
@@ -99,8 +99,7 @@ form.example::after {
                 ?>
                 <tr valign="top">
                     <td>
-                        <?php $_SESSION['media_id'] = $title;?>
-                        <a href="media_red.php"> <?php echo $title;?> </a>
+                        <a> <?php echo $title;?> </a>
                     </td>
                     <td>
                         <a> <?php echo $key;?> </a>
@@ -109,12 +108,17 @@ form.example::after {
                         <a> <?php echo $date;?> </a>
                     </td>
                     <td>
-                        <form action="media_red.php" method="post" value="<? echo $title; ?>">
-                          <button> View Media </button>  
+                        <form action="media.php" method="post" value="<? echo $title; ?>">
+                          <?php $view_title = "view_" . $title;?>
+                          <?php
+                          //  $_SESSION['media_id'] = $title; ?>
                           <?php
                             // echo "<input type='submit' name='{$title}' value='Go to {$title}'>";
-                            // array_push($media_array, array($title, $_SESSION['username'], $title));
-                          ?>                        
+                            array_push($media_array, array($title, $_SESSION['username'], $title));
+                          ?> 
+                          <input type='submit' name='<?php echo $view_title; ?>' value='View Media'>
+                          <!-- <button> View Media </button>   -->
+                                                 
                         </form>                    
                     </td>
                 </tr>
@@ -129,8 +133,11 @@ form.example::after {
                         // for every button name
                         foreach ($media_array as $key => $value_array) {
                             if (isset($_POST[$value_array[0]]) && $cnt < 1) {
-                                toMedia($value_array[2]);
+                                // toMedia($value_array[2]);
+                                $_SESSION['media_id'] = $value_array[2];
                                 $cnt++;
+                                header("Location: media.php");
+
                             }   
                         }
                 ?>

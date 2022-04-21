@@ -62,7 +62,10 @@ if(isset($_GET['filepath'])) {
     $file = mysqli_fetch_assoc($result);
 
     // $media_id = $result[0];
-     $filepath = $result[1];
+    $filepath = $result[1];
+    //~ echo "<h1 style='color: blue;font-family: verdana;font-size: 300%;'>" . $filepath;
+    //~REAGAN:
+    $_SESSION['media_id'] = $filepath;
     // $user = $result[2];
 
     $url = 'media/'.$user.'/'.$file['filepath'];

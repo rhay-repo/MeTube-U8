@@ -13,26 +13,43 @@
         $query = "DELETE FROM playlist WHERE username='{$_SESSION['username']}' AND filepath='{$media}'";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
     }
-
-    function gotoMedia(&$media) {
-        $_SESSION['media_id'] = $media;
-        header("Location: media.php");
-    }
 ?>
 
 <!DOCTYPE html>
 <html>
+    <style>
+        p {
+			text-align: center; 
+			color: white;
+		}
+        form {
+            margin: auto; 
+            width: 220px;
+        }
+    </style>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> View Playlists </title>
         <link rel="stylesheet" type="text/css" href="homepage-style.css">
         <body>
             <?php 
-                $_SESSION['playlist'] = 'my first playlist!';
+                $_SESSION['playlist'] = 'update';
                 // $playlist = $_SESSION['playlist'];
             ?>
 
             <h1> <?php echo $_SESSION['playlist']; ?> Playlist </h1>
+
+            <br>
+
+            <form method="POST">
+                <?php echo "<p>Change Playlist Name: </p>"; ?>
+                <input type="text" name="new_name" placeholder="New Playlist Name">
+                <input type="submit" name="update_name_button" value="Save Changes">
+            </form>
+
+            <br>
+
+           
 
             <?php
                 $query = "SELECT * FROM playlist WHERE username = '{$_SESSION['username']}' AND playlist_title = '{$_SESSION['playlist']}'";
@@ -61,10 +78,10 @@
                         <a> <?php echo $file_title;?> </a>
                     </td>
                     <td>
-                    <form method="post">
+                    <form action="media.php" method="post">
                         <?php $view_media = "view_" . $file_title;?>
+                        <?php $_SESSION['media_id'] = $file_title; ?>
                         <input type='submit' name=<?php echo $view_media; ?> value='View'>
-                        <?php array_push($view_media_array, array($view_media, $_SESSION['username'], $file_title)); ?>
                     </form>                                     
                     </td>
                     <td>
@@ -79,6 +96,18 @@
                     }
                 ?>
 
+
+            <?php 
+                if (isset($_POST['update_name_button'])) {
+                    // assign the new username
+                    $new_name = $_POST['new_name'];
+                    // update the that user's username in the database
+                    $query = "UPDATE playlist SET playlist_title='{$new_name}' WHERE username='{$_SESSION['username']}'";
+                    $result = mysqli_query($link, $query) or die("Query error: ". mysqli_error($link)."\n");
+                    // replace the session username with the new username
+                    $_SESSION['playlist'] = $new_name;
+                }
+            ?>
                 <?php
 
                     $cnt = 0;
@@ -92,19 +121,6 @@
                             $cnt++;
                         }   
                     }
-
-                    $cnt = 0;
-                    // loop through the array of add button names
-                    // for every button name ... 
-                    foreach ($view_media_array as $key => $value_array) {
-                        // ... check if button has been clicked ...
-                        if (isset($_POST[$value_array[0]]) && $cnt < 1) {
-                            // ... then add respective user.
-                            gotoMedia($value_array[2]);
-                            $cnt++;
-                        }   
-                    }
-
                 ?>
             </table>
         </body>
