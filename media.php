@@ -272,7 +272,7 @@
 								<input type="submit" name="post" value="Reply">
 							</form>                    
 							</td>
-							<?php } else { echo ' Must be signed in to reply to comments'; } ?>
+							<a><?php } else { ?> <td> <?php echo ' Must be signed in to reply to comments'; } ?></td></a>
 							 </td>
 						</tr>
 						<?php
