@@ -43,7 +43,9 @@
             <h1> Favorites List </h1>
 
             <?php
-                $fav = "SELECT favorite_list.username, favorite_list.time, media.title FROM favorite_list INNER JOIN media ON favorite_list.filepath = media.filepath WHERE favorite_list.username = media.username";
+                $fav = "SELECT favorite_list.username, favorite_list.time, media.title FROM favorite_list 
+                INNER JOIN media ON favorite_list.filepath = media.filepath 
+                WHERE favorite_list.username = media.username AND favorite_list.username ='{$_SESSION['username']}'";
                 $f_result = mysqli_query($link, $fav) or die("Query error: ". mysqli_error($link). "\n");
             ?>
 
@@ -110,6 +112,7 @@
                             // ... then add respective user.
                             favorite($value_array[1], $value_array[2]);
                             $cnt++;
+                            echo "<meta http-equiv='refresh' content='0'>";
                         }   
                     }
 
@@ -122,6 +125,7 @@
                             // ... then remove respective user.
                             remove_favorite($value_array[1], $value_array[2]);
                             $cnt++;
+                            echo "<meta http-equiv='refresh' content='0'>";
                         }   
                     }
 

@@ -2,6 +2,9 @@
     // include standard variables
     require 'headers_no_navbar.php';
 
+    // direct message array
+    $dm_array = array();
+
     function print_inbox_message(&$uid, &$uidf) {
         $query = "SELECT recipient FROM contact_list where sender='{$uid}' and recipient='{$uidf}'";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
@@ -36,11 +39,26 @@
                     $result_r2 = mysqli_fetch_row($result2);
                     if ($result_r2 != NULL) {
                         $the_message = $result_r2[0];
+                        
 
                         echo "<h4 style=\"color:white\">From {$the_recipient}: {$the_message}</h4>";
-                    }
+                        
+
+                        // BUTTON: reply to contact
+                        echo "<form method='post' value='{$the_recipient}'>";
+                        $replyto_recipient = "replyto_" . $the_recipient;
+
+                            //  $_SESSION['media_id'] = $title; 
+
+                            // echo "<input type='submit' name='{$title}' value='Go to {$title}'>";
+                        array_push($dm_array, array($_SESSION['username'], $the_recipient));
+
+                        echo "<input type='submit' name='{$replyto_recipient}' value='Reply to {$the_recipient}'>";
+                        echo "<meta http-equiv='refresh' content='5'>";
+                        echo "</form>";
+                    } // close if statement
                     
-                }
+                } // close while loop
 
             
             ?> 

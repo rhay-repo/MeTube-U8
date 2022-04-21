@@ -2,6 +2,9 @@
     // include standard variables
     require 'headers.php';
 
+    // direct message array
+    $dm_array = array();
+
     function send_message(&$sender, &$recipient, &$message_text) {
         $query = "INSERT INTO direct_messages VALUES ('{$sender}', '{$recipient}', '{$message_text}', NOW())";
         $result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
