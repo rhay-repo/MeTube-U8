@@ -13,6 +13,7 @@
     $media_search;
     $media_category;
     $comment_id;
+    $user_is_logged_in = true;
 
     $media_id;
     $channel_owner;

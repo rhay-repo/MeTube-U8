@@ -30,21 +30,26 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 
 
 
-    if (!in_array($extension, ['zip', 'pdf', 'docx', 'jpg', 'jpeg', 'mov', 'mp4', 'mp3', 'png'])) {
-        echo "You file extension must be .zip, .pdf, .docx, .jpg, .jpeg, .mov, .mp4, .mp3, or .png";
-    } elseif ($_FILES['myfile']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
+    if (!in_array($extension, ['docx', 'jpg', 'jpeg', 'mp4', 'mp3', 'png', 'wav', 'ogg', 'webm'])) {
+        echo "You file extension must be .docx, .jpg, .jpeg, .mp4, .mp3, .png, .wav, .ogg, or .webm";
+    } //elseif ($_FILES['myfile']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
+    elseif ($_FILES['myfile']['size'] > 3000000) { // file shouldn't be larger than 3Megabytes
         echo "File too large!";
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
             $sql = "INSERT INTO media(filepath, username, title, file_type, file_size, date_published, views, keywords, media_rating, category, viewing_groups, description) VALUES 
             ('$filename', '$username', '$title', '$extension', $size, curdate(), 0, '$keywords', 0, '$cat', '$viewgroup', '$desc')";
+            // if the query is completed ...
             if (mysqli_query($link, $sql)) {
-                echo "File uploaded successfully";
-                header("Location: media.php");
+                // ... display a success message ...
+                echo "<h2 style='color:green;background-color:black;'>File uploaded successfully!</h2>";
+                // ... and display a button to redirect them to the Search Media page.
+                echo "<a href='search_media.php' style='text-align:center;color:blue;background-color:black;'> Go to Search Media? </a>";
+
             }
         } else {
-            echo "Failed to upload file.";
+            echo "<h2 style='color:red;background-color:yellow;'>Failed to upload file.</h2>";
         }
     }
 }
@@ -62,10 +67,7 @@ if(isset($_GET['filepath'])) {
     $file = mysqli_fetch_assoc($result);
 
     // $media_id = $result[0];
-    $filepath = $result[1];
-    //~ echo "<h1 style='color: blue;font-family: verdana;font-size: 300%;'>" . $filepath;
-    //~REAGAN:
-    $_SESSION['media_id'] = $filepath;
+     $filepath = $result[1];
     // $user = $result[2];
 
     $url = 'media/'.$user.'/'.$file['filepath'];

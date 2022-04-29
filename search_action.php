@@ -21,21 +21,101 @@
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 
     <style>
-        .button {
-            background-color: #e0e0e0;
-            border: none;
-            color: #8c72e0;
-            padding: 4px 4px;
-            text-align: center;
-            display: inline-block;
-            font-size: 20px;
-            height:25px; 
-            width:120px; 
-            margin: -30px -75px; 
-            position:relative;
-            top:50%; 
-            left:50%;
-        }
+.button {
+    background-color: #e0e0e0;
+    border: none;
+    color: #8c72e0;
+    padding: 4px 4px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    height:25px; 
+    width:120px; 
+    margin: -30px -75px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #8c72e0;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #3207ba;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+
+.btn-group button {
+  background-color: blueviolet; /* purple background */
+  border: 1px blueviolet; /* purple border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  max-width:500px;
+  margin: auto;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: black;
+}
+
+h3 { 
+  text-align: center; 
+  color: white;
+} 
+
+a {
+  text-align: center; 
+  color: white;
+}
         </style>
 </head>
 <body>
@@ -83,7 +163,8 @@
         }
     ?>
 
-<?php
+<?php 
+// DO NOT EDIT ABOVE THIS LINE ################################################################
         
             echo 
             '<table class="table center" id="contacts" width="25%" cellpadding="1" cellspacing="1">
@@ -115,6 +196,17 @@
                             
                             </tr>';
                     }
+                    
+                //     <form method="post">
+                //             <button type="submit" name="add" value=<?php $title >> Favorite </button>
+                //     </form>
+                //     </label>
+            
+                //     </td>
+                // </tr>';
+
+
+// DO NOT EDIT BELOW THIS LINE ################################################################               
         }
         else {
             echo "<h4> <font color=white> No results for '". $val ."'</h4>";

@@ -19,6 +19,12 @@
 			$query = "INSERT INTO subscribe VALUE ('{$uid}', '{$uidf}')";
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
+		//  else {
+		// 	$_SESSION['error'] = "You are not logged in, therefore you cannot complete this action!";
+
+		// 	echo $_SESSION['error'];
+		// 	unset($_SESSION['error']);
+		// }
     }
 
 	function favorite(&$user, &$file) {
@@ -27,6 +33,10 @@
 			$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 		}
 	}
+
+	// function toChannel() {
+	// 	header("Location: view_channel.php");
+	// }
 ?>
 
 <!DOCTYPE html>
@@ -81,9 +91,13 @@
 		<!-- <h1> View Media </h1> -->
 		<div class="content">
 		<?php
-				$MEDIA_ID = $_SESSION['media_id'];
+			// if(isset($_SESSION['media_id'])) {
+				// $media_id = $_SESSION['media_id'];
+				// $_SESSION['media_id'] = 9;
+				$media_id = $_SESSION['media_id'];
+				// echo "<h1>".$media_id."</h1>";
 
-				$query = "SELECT * FROM media WHERE title = '{$MEDIA_ID}'";
+				$query = "SELECT * FROM media WHERE title = '{$media_id}'";
 				$result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
 
 				while($r = $result->fetch_assoc()) {
@@ -104,18 +118,46 @@
 					$_SESSION['owner'] = $user;
 				}
 
-				
+				// check if user is friend of media being viewed
+				$friend_query = "SELECT contact FROM contact_list WHERE username='{$user}'";
+				$friend_result = mysqli_query($_SESSION['link'], $query) or die("Query error test: ". mysqli_error($_SESSION['link'])."\n");
+
 				$view_private = false;
+
+				// doesn't work needs some help
+				// while($fr = $friend_result->fetch_assoc()) {
+				// 	$c = $fr['contact'];
+				// 	echo $c;
+				// 	if($c == $_SESSION['username']) {
+				// 		$view_private = true;
+				// 	}
+				// }
 
 				if($_SESSION['username'] == $user) {
 					$view_private = true;
 				}
 
-				if($MEDIA_ID != NULL) {
+				if($media_id != NULL) {
 					if($group == 'Public') {
 						echo "<h1>".$title."</h1>";
 						
-						echo "<img src='media/".$user."/".$filepath."' width='460' height='345'>";
+						// Choose HTML option based on media type:
+						// media is a video
+						if ($type == 'mp4' or $type == 'ogg' or $type == 'webm') {
+							echo "<video width='460' controls><source src='media/".$user."/".$filepath."' type='video/".$type."'></video>";
+						}
+						// media is an audio file (mp3)
+						elseif ($type == 'mp3' or $type == 'wav') {
+							echo "<audio controls><source src='media/".$user."/".$filepath."' type='video/".$type."'></audio>";
+						}
+						// media is a jpeg or jpg
+						elseif ($type == 'jpeg' or $type == 'jpg') {
+							echo "<object data='media/".$user."/".$filepath."' width='460'></object>";
+						}
+						// media is some other kind of file
+						else {
+							echo "<img src='media/".$user."/".$filepath."' width='460'>"; //~height='345'
+						}
 						// echo "<img src='images/rjhay/goodvibes.jpg' width='460' height='345' >";
 
 						echo "<h3>Published by ".$user."!</h3>";
@@ -198,8 +240,13 @@
             }
 		?>
 
-		<?php if($view_private or $group == 'Public') {?>
-			
+		<!-- <php
+				$data_query = "SELECT comments.username, comments.datetime, comments.comment 
+				FROM comments INNER JOIN media ON comments.filepath = media.filepath WHERE 
+				comments.filepath = media.filepath";
+				$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
+			?> -->
+		<?php if($view_private or $group == 'Public') { ?>
 			<h3>Comments</h3>
 			<table class="table center" id="contacts" width="20%" cellpadding="0" cellspacing="0">
                 <tr>
@@ -211,7 +258,7 @@
                 <?php
 
 					$data_query = "SELECT username, comment, datetime, comment_id
-					FROM comments WHERE comments.filepath = '{$MEDIA_ID}' ORDER BY comment_id DESC, datetime DESC";
+					FROM comments WHERE comments.filepath = '{$media_id}' ORDER BY comment_id DESC, datetime DESC";
 
 					$result = mysqli_query($link, $data_query) or die("Query error: ". mysqli_error($link)."\n");
 					$c_id;
@@ -231,24 +278,19 @@
 							<td>
 								<a> <?php echo $date_time;?> </a>
 							</td>
-							
-							<?php if($_SESSION['username'] != NULL) {  ?>
-								<td>
-								<form action="reply_comment.php" method="post">
+							<td>
+							<form action="reply_comment.php" method="post">
 								<input type="text" name="reply" size = "50">
 								<input type="hidden" name="id" value='<?php echo "$c_id";?>'> 
 								<input type="submit" name="post" value="Reply">
 							</form>                    
 							</td>
-							<a><?php } else { ?> <td> <?php echo ' Must be signed in to reply to comments'; } ?></td></a>
-							 </td>
 						</tr>
 						<?php
 					}
                 		?>
   			</table>
-				
-			  <?php if($_SESSION['username'] != NULL) {  ?>
+
 				<form action="comment_action.php" method="post">
 					<h3>Add Comment</h3>
 					<input type="text" name="comment" size = "50">
@@ -256,7 +298,6 @@
 					<input type="submit" name="post" value="Post Comment">
 				</form>
 				<br><br>
-				<?php } else {?> <br><br> <?php echo '<h3>Must be signed in to post comments</h3>'; } ?>
 		<?php } ?>
 		</div>
 	</body>
